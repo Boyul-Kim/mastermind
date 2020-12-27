@@ -1,0 +1,38 @@
+.background-color {
+  background-color: rgb(5, 56, 107);
+  height: 100vh;
+  margin: 0;
+}
+
+.container-child {
+  height: 100%;
+  width: 100%;
+}
+
+.white {
+  color: white;
+}
+
+.brain-white {
+  color: white;
+  text-align: center;
+  font-size: 10rem;
+}
+
+.quote {
+  color: white;
+  text-align: center;
+  font-size: small;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.no-margins {
+  margin-left: 30px;
+}
+
+.input-length {
+  width: 13rem;
+}
