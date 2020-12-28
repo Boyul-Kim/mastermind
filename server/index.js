@@ -3,6 +3,9 @@ const ClientError = require('./client-error');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const pg = require('pg');
+const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
+const errorMiddleware = require('./error-middleware');
 
 const app = express();
 
@@ -15,6 +18,29 @@ const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
+app.post('/api/signup', (req, res, next) => {
+  const { username, password, email } = req.body;
+  if (!username || !password || !email) {
+    throw new ClientError(400, 'Username and password are required');
+  }
+
+  argon2
+    .hash(password)
+    .then(hashedPassword => {
+      const sql = `
+        insert into "users" ("username", "hashedPassword", "email")
+        values ($1, $2, $3)
+        returning "userId", "username"
+      `;
+      const params = [username, hashedPassword, email];
+      return db.query(sql, params);
+    })
+    .then(result => {
+      res.status(201).json(result.rows[0].user);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/login', (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -22,23 +48,44 @@ app.post('/api/login', (req, res, next) => {
   }
 
   const sql = `
-    select "userId",
-           "hashedPassword"
-      from "users"
-      where "username" = ($1)
-  `;
-
+        select "userId",
+              "hashedPassword"
+          from "users"
+          where "username" = ($1)
+      `;
   const param = [username];
 
   db.query(sql, param)
     .then(result => {
       if (!result.rows[0]) {
-        throw new ClientError(401, 'Invalid login');
+        throw new ClientError(401, 'invalid login');
       }
-      res.status(200).json(result.rows[0]);
+
+      argon2
+        .verify(result.rows[0].hashedPassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            throw new ClientError(401, 'invalid login');
+          }
+
+          const payload = {
+            userId: result.rows[0].userId,
+            username: username
+          };
+
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          const payloadTokenResponse = {
+            token: token,
+            user: payload
+          };
+          res.status(200).json(payloadTokenResponse);
+        })
+        .catch(err => { next(err); });
     })
     .catch(err => { next(err); });
 });
+
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
