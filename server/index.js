@@ -36,7 +36,8 @@ app.post('/api/signup', (req, res, next) => {
       return db.query(sql, params);
     })
     .then(result => {
-      res.status(201).json(result.rows[0].user);
+      const [user] = result.rows;
+      res.status(201).json(user);
     })
     .catch(err => next(err));
 });
@@ -57,19 +58,21 @@ app.post('/api/login', (req, res, next) => {
 
   db.query(sql, param)
     .then(result => {
-      if (!result.rows[0]) {
+      const [user] = result.rows;
+      if (!user) {
         throw new ClientError(401, 'invalid login');
       }
 
-      argon2
-        .verify(result.rows[0].hashedPassword, password)
+      const { userId, hashedPassword } = user;
+      return argon2
+        .verify(hashedPassword, password)
         .then(isMatching => {
           if (!isMatching) {
             throw new ClientError(401, 'invalid login');
           }
 
           const payload = {
-            userId: result.rows[0].userId,
+            userId: userId,
             username: username
           };
 
@@ -78,11 +81,10 @@ app.post('/api/login', (req, res, next) => {
             token: token,
             user: payload
           };
-          res.status(200).json(payloadTokenResponse);
-        })
-        .catch(err => { next(err); });
+          res.json(payloadTokenResponse);
+        });
     })
-    .catch(err => { next(err); });
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);
