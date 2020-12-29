@@ -24,43 +24,44 @@ export default class Home extends React.Component {
       .then(result => {
         this.setState({ projects: this.state.projects.concat(result) });
       });
-    // fetch('/api/home', { method: 'GET' })
-    //   .then(result => {
-    //     // console.log(result);
-    //     if (result.projectId && result.projectName) {
-    //       this.setState({ projectName: result.projectName });
-    //     }
-    //   });
     this.setState({ mounted: true });
   }
 
   render() {
-    // console.log(this.state.projects);
-    // console.log((this.state.projects[0]));
+    const projectList = this.state.projects.map(project =>
+      <div key={project.projectId} >
+        {
+          <div onClick={this.handleProjectView} className="card margin-top-1x">
+            <div className="row d-flex align-items-center card-body">
+              <i className="fas fa-lightbulb fa-3x margin-1x icon-color"></i>
+              <div>
+                <h2 className="homepage-font">{project.projectName}</h2>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    );
+
     if (this.state.projectSelected) {
       return <Redirect to="project" />;
     }
 
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-color">
-          <i className="fas fa-bars white"></i>
+        <nav className="navbar navbar-expand-xl navbar-color navbar-height">
+          <i className="fas fa-bars white fa-2x"></i>
         </nav>
 
-        <div className="container-fluid">
-          <h1>Projects</h1>
+        <div className="container-fluid margin-top-1x">
+          <h1 className="font-color">Projects</h1>
 
-          <div onClick={this.handleProjectView} className="card">
-            <div className="row card-body">
-              <i className="fas fa-lightbulb fa-3x margin-1x"></i>
-              <div>
-                <h2 className="homepage-font"></h2>
-              </div>
-            </div>
+          <div>
+            {projectList}
           </div>
 
           <div>
-            <i className="fas fa-plus fa-2x row d-flex justify-content-center homepage-font"></i>
+            <i className="fas fa-plus fa-2x row d-flex justify-content-center homepage-font margin-top-1x"></i>
           </div>
 
         </div>
