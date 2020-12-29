@@ -18,6 +18,21 @@ const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
+app.get('/api/home', (req, res, next) => {
+  const { projectId } = req.body;
+  const sql = `
+    select "projectId",
+           "projectName"
+      from "project"
+      where "projectId" = ($1)
+  `;
+  const param = [projectId];
+  db.query(sql, param)
+    .then(result => {
+      res.status(200).json(result.rows[0]);
+    });
+});
+
 app.post('/api/signup', (req, res, next) => {
   const { username, password, email } = req.body;
   if (!username || !password || !email) {
