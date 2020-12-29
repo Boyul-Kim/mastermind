@@ -46,14 +46,14 @@ export default class Login extends React.Component {
     return (
       <div className='container-fluid background-color'>
         <div className='row d-flex justify-content-center align-items-center container-child'>
-          <h1 className="no-margins white">Mastermind</h1>
-          <i className="no-margins fas fa-brain brain-white"></i>
+          <h1 className="ml-4 white">Mastermind</h1>
+          <i className="ml-4 fas fa-brain brain-white"></i>
 
-          <div className="no-margins">
+          <div className="ml-4">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <input type="text" className="form-control margin-bottom" id="username" name="username" placeholder="Username" onChange={this.handleChange} />
-                <input type="password" className="form-control margin-bottom" id="password" name="password" placeholder="Password" onChange={this.handleChange} />
+                <input type="text" className="form-control mb-3" id="username" name="username" placeholder="Username" onChange={this.handleChange} />
+                <input type="password" className="form-control mb-3" id="password" name="password" placeholder="Password" onChange={this.handleChange} />
                 <button type="submit" className="btn btn-danger input-length">Log in</button>
               </div>
             </form>

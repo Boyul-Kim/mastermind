@@ -4,6 +4,22 @@
   margin: 0;
 }
 
+.navbar-color {
+  background-color: rgb(5, 56, 107);
+}
+
+.font-color {
+  color: rgb(66, 66, 66);
+}
+
+.icon-color {
+  color: rgb(101, 101, 101);
+}
+
+.navbar-height {
+  height: 3rem;
+}
+
 .container-child {
   height: 100%;
   width: 100%;
@@ -25,14 +41,10 @@
   font-size: small;
 }
 
-.margin-bottom {
-  margin-bottom: 1rem;
-}
-
-.no-margins {
-  margin-left: 30px;
-}
-
 .input-length {
   width: 13rem;
+}
+
+.homepage-font {
+  color: rgb(5, 56, 107);
 }

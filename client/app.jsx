@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './pages/login';
 import Home from './pages/home';
+import Project from './pages/project';
 import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
 import decodeToken from './lib/decode-token';
@@ -36,6 +37,11 @@ export default class App extends React.Component {
 
   renderPage() {
     const { path } = this.state.route;
+
+    if (path === 'project') {
+      const projectId = this.state.route.params.get('projectId');
+      return <Project projectId={projectId} />;
+    }
     if (path === 'home') {
       return <Home />;
     }

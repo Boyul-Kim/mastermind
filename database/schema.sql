@@ -32,6 +32,7 @@ CREATE TABLE "tasks" (
 	"taskId" serial NOT NULL,
 	"statusId" integer NOT NULL,
 	"userId" integer NOT NULL,
+	"projectId" integer NOT NULL,
 	"description" TEXT NOT NULL,
 	"dateCreated" TEXT NOT NULL,
 	"deadline" TEXT NOT NULL,
@@ -74,10 +75,21 @@ CREATE TABLE "timeTracker" (
 
 
 
+CREATE TABLE "project" (
+	"projectId" serial NOT NULL,
+	"projectName" TEXT NOT NULL,
+	CONSTRAINT "project_pk" PRIMARY KEY ("projectId")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 
 
 ALTER TABLE "tasks" ADD CONSTRAINT "tasks_fk0" FOREIGN KEY ("statusId") REFERENCES "statuses"("statusId");
 ALTER TABLE "tasks" ADD CONSTRAINT "tasks_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+ALTER TABLE "tasks" ADD CONSTRAINT "tasks_fk2" FOREIGN KEY ("projectId") REFERENCES "project"("projectId");
 
 ALTER TABLE "comments" ADD CONSTRAINT "comments_fk0" FOREIGN KEY ("taskId") REFERENCES "tasks"("taskId");
 
