@@ -18,7 +18,18 @@ const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-app.get('/api/home', (req, res, next) => {
+app.get('/api/home/project', (req, res, next) => {
+  const sql = `
+    select *
+    from "project"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.status(200).json(result.rows);
+    });
+});
+
+app.get('/api/home/projectId', (req, res, next) => {
   const { projectId } = req.body;
   const sql = `
     select "projectId",

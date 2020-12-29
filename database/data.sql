@@ -8,7 +8,8 @@ values (default, 'Current Tasks'),
        (default, 'Backlog');
 
 insert into "project" ("projectId", "projectName")
-values (default, 'App Refactor');
+values (default, 'App Refactor'),
+       (default, 'Body Shaping');
 
 insert into "tasks" ("taskId", "statusId", "userId", "projectId", "description", "dateCreated", "deadline", "files")
 values (default, 1, 1, 1, 'created data model', 'Dec 23, 2020', 'Jan 2, 2021', 'test.txt');

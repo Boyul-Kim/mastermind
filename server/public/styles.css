@@ -4,6 +4,14 @@
   margin: 0;
 }
 
+.navbar-color {
+  background-color: rgb(5, 56, 107);
+}
+
+.margin-1x {
+  margin: 1rem;
+}
+
 .container-child {
   height: 100%;
   width: 100%;
@@ -35,4 +43,8 @@
 
 .input-length {
   width: 13rem;
+}
+
+.homepage-font {
+  color: rgb(5, 56, 107);
 }
