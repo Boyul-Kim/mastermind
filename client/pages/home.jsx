@@ -31,9 +31,9 @@ export default class Home extends React.Component {
     const projectList = this.state.projects.map(project =>
       <div key={project.projectId} >
         {
-          <div onClick={this.handleProjectView} className="card margin-top-1x">
+          <div onClick={this.handleProjectView} className="card mt-3">
             <div className="row d-flex align-items-center card-body">
-              <i className="fas fa-lightbulb fa-3x margin-1x icon-color"></i>
+              <i className="fas fa-lightbulb fa-3x m-3 icon-color"></i>
               <div>
                 <h2 className="homepage-font">{project.projectName}</h2>
               </div>
@@ -53,7 +53,7 @@ export default class Home extends React.Component {
           <i className="fas fa-bars white fa-2x"></i>
         </nav>
 
-        <div className="container-fluid margin-top-1x">
+        <div className="container-fluid mt-3">
           <h1 className="font-color">Projects</h1>
 
           <div>
@@ -61,7 +61,7 @@ export default class Home extends React.Component {
           </div>
 
           <div>
-            <i className="fas fa-plus fa-2x row d-flex justify-content-center homepage-font margin-top-1x"></i>
+            <i className="fas fa-plus fa-2x row d-flex justify-content-center homepage-font mt-3"></i>
           </div>
 
         </div>

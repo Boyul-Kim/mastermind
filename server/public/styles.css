@@ -16,22 +16,6 @@
   color: rgb(101, 101, 101);
 }
 
-.margin-1x {
-  margin: 1rem;
-}
-
-.margin-top-1x {
-  margin-top: 1rem;
-}
-
-.margin-bottom {
-  margin-bottom: 1rem;
-}
-
-.no-margins {
-  margin-left: 30px;
-}
-
 .navbar-height {
   height: 3rem;
 }
