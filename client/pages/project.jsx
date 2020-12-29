@@ -31,7 +31,28 @@ export default class Project extends React.Component {
           {
             this.state.details.map(detail => (
               <div key={detail.taskId}>
-                <div>test</div>
+                <h2 className="font-color">{detail.taskName}</h2>
+
+                <form className="form-inline">
+                  <div className="form-group mb-2">
+                    <input type="text" className="form-control vw-90" id="searchBar" placeholder="Search task"/>
+                  </div>
+                  <button type="submit" className="btn btn-primary mb-2">Go!</button>
+                </form>
+
+                <select className="custom-select custom-select-sm mb-3">
+                  <option defaultValue>Filter</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+
+                <div className="card">
+                  <div className="card-body">
+                    <h3>{detail.statusId}</h3>
+                  </div>
+                </div>
+
               </div>
             ))
           }
