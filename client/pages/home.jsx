@@ -5,15 +5,8 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: [],
-      projectSelected: false,
-      mounted: false
+      projects: []
     };
-    this.handleProjectView = this.handleProjectView.bind(this);
-  }
-
-  handleProjectView() {
-    this.setState({ projectSelected: !this.state.projectSelected });
   }
 
   componentDidMount() {
@@ -23,7 +16,6 @@ export default class Home extends React.Component {
       .then(result => {
         this.setState({ projects: this.state.projects.concat(result) });
       });
-    this.setState({ mounted: true });
   }
 
   render() {
