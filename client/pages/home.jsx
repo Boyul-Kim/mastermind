@@ -1,6 +1,5 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
-import Redirect from '../components/redirect';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -28,24 +27,6 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const projectList = this.state.projects.map(project =>
-      <div key={project.projectId} >
-        {
-          <div onClick={this.handleProjectView} className="card mt-3">
-            <div className="row d-flex align-items-center card-body">
-              <i className="fas fa-lightbulb fa-3x m-3 icon-color"></i>
-              <div>
-                <h2 className="homepage-font">{project.projectName}</h2>
-              </div>
-            </div>
-          </div>
-        }
-      </div>
-    );
-
-    if (this.state.projectSelected) {
-      return <Redirect to="project" />;
-    }
 
     return (
       <div>
@@ -57,7 +38,22 @@ export default class Home extends React.Component {
           <h1 className="font-color">Projects</h1>
 
           <div>
-            {projectList}
+            {
+              this.state.projects.map(project => (
+                <div key={project.projectId} >
+                  {
+                    <a href={`#project?projectId=${project.projectId}`} className="card mt-3 d-block">
+                      <div className="row d-flex align-items-center card-body">
+                        <i className="fas fa-lightbulb fa-3x m-3 icon-color"></i>
+                        <div>
+                          <h2 className="homepage-font">{project.projectName}</h2>
+                        </div>
+                      </div>
+                    </a>
+                  }
+                </div>
+              ))
+            }
           </div>
 
           <div>

@@ -39,7 +39,8 @@ export default class App extends React.Component {
     const { path } = this.state.route;
 
     if (path === 'project') {
-      return <Project />;
+      const projectId = this.state.route.params.get('projectId');
+      return <Project projectId={projectId} />;
     }
     if (path === 'home') {
       return <Home />;
