@@ -18,7 +18,7 @@ const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-app.get('/api/home/project', (req, res, next) => {
+app.get('/api/home/projects', (req, res, next) => {
   const sql = `
     select *
     from "project"

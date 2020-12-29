@@ -19,7 +19,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
 
-    fetch('/api/home/project', { method: 'GET' })
+    fetch('/api/home/projects', { method: 'GET' })
       .then(res => res.json())
       .then(result => {
         this.setState({ projects: this.state.projects.concat(result) });
