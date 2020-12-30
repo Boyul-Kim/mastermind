@@ -61,6 +61,7 @@ app.get('/api/projects/:projectId', (req, res, next) => {
     select "taskId",
         "projectName",
         "statusId",
+        "statusName",
         "taskName",
         "username",
         "dateCreated"
