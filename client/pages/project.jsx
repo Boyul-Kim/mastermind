@@ -31,15 +31,18 @@ export default class Project extends React.Component {
           {
             this.state.details.slice(0, 1).map(detail => (
               <div key={detail.taskId}>
-                <h2 className="font-color">{detail.projectName}</h2>
+                <h2 className="font-color mb-3">{detail.projectName}</h2>
               </div>
             ))
           }
-          <form className="form-inline">
-            <div className="form-group mb-2">
-              <input type="text" className="form-control vw-90" id="searchBar" placeholder="Search task"/>
+          <form>
+            <div className="form-row mb-2">
+              <div className="col-10">
+                <input type="text" className="form-control vw-90" id="searchBar" placeholder="Search task" />
+              </div>
+              <button type="submit" className="btn btn-primary mb-2">Go!</button>
             </div>
-            <button type="submit" className="btn btn-primary mb-2">Go!</button>
+
           </form>
 
           <select className="custom-select custom-select-sm mb-3">
@@ -60,7 +63,11 @@ export default class Project extends React.Component {
                         <div className="card-body white">
                           <h5>{detail.taskName}</h5>
                           <h6>{detail.username}</h6>
-                          <h6>{detail.dateCreated}</h6>
+                          <div className="row d-flex justify-content-between">
+                            <h6 className="ml-3">{detail.dateCreated}</h6>
+                            <i className="far fa-comment fa-2x mr-3"></i>
+                          </div>
+
                         </div>
                       </a>
                     }
