@@ -29,7 +29,7 @@ export default class Project extends React.Component {
 
         <div className="container-fluid mt-3">
           {
-            this.state.details.map(detail => (
+            this.state.details.slice(0, 1).map(detail => (
               <div key={detail.taskId}>
                 <h2 className="font-color">{detail.projectName}</h2>
               </div>
@@ -55,13 +55,15 @@ export default class Project extends React.Component {
               {
                 this.state.details.map(detail => (
                   <div key={detail.taskId}>
-                    <a href="" className="card mt-3 d-block navbar-color">
-                      <div className="card-body white">
-                        <h5>{detail.taskName}</h5>
-                        <h6>{detail.username}</h6>
-                        <h6>{detail.dateCreated}</h6>
-                      </div>
-                    </a>
+                    {
+                      <a href={`#task?projectId=${detail.projectId}&taskId=${detail.taskId}`} className="card mt-3 d-block navbar-color">
+                        <div className="card-body white">
+                          <h5>{detail.taskName}</h5>
+                          <h6>{detail.username}</h6>
+                          <h6>{detail.dateCreated}</h6>
+                        </div>
+                      </a>
+                    }
                   </div>
                 ))
               }

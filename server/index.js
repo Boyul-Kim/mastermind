@@ -59,6 +59,7 @@ app.get('/api/projects/:projectId', (req, res, next) => {
 
   const sql = `
     select "taskId",
+        "projectId",
         "projectName",
         "statusId",
         "statusName",
@@ -76,10 +77,10 @@ app.get('/api/projects/:projectId', (req, res, next) => {
 
   db.query(sql, param)
     .then(result => {
-      if (!result.rows[0]) {
+      if (!result.rows) {
         throw new ClientError(404, `cannot find projectId ${projectId}`);
       }
-      res.json(result.rows[0]);
+      res.json(result.rows);
     })
     .catch(err => next(err));
 });
