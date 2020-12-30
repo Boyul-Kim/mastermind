@@ -51,6 +51,37 @@ app.get('/api/home/:projectId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/projects/:projectId', (req, res, next) => {
+  const projectId = Number(req.params.projectId);
+  if (!projectId) {
+    throw new ClientError(400, 'projectId must be a positive integer');
+  }
+
+  const sql = `
+    select "taskId",
+        "projectId",
+        "projectName",
+        "statusId",
+        "statusName",
+        "taskName",
+        "username",
+        "dateCreated"
+    from "tasks"
+    join "project" using ("projectId")
+    join "statuses" using ("statusId")
+    join "users" using ("userId")
+    where "projectId" = ($1)
+  `;
+
+  const param = [projectId];
+
+  db.query(sql, param)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/signup', (req, res, next) => {
   const { username, password, email } = req.body;
   if (!username || !password || !email) {

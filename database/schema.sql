@@ -33,6 +33,7 @@ CREATE TABLE "tasks" (
 	"statusId" integer NOT NULL,
 	"userId" integer NOT NULL,
 	"projectId" integer NOT NULL,
+	"taskName" TEXT NOT NULL,
 	"description" TEXT NOT NULL,
 	"dateCreated" TEXT NOT NULL,
 	"deadline" TEXT NOT NULL,
