@@ -51,6 +51,24 @@ app.get('/api/home/:projectId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/projects/titles/:projectId', (req, res, next) => {
+  const projectId = Number(req.params.projectId);
+  const sql = `
+    select "projectId",
+           "projectName"
+      from "project"
+      where "projectId" = ($1)
+  `;
+
+  const param = [projectId];
+
+  db.query(sql, param)
+    .then(result => {
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/projects/:projectId', (req, res, next) => {
   const projectId = Number(req.params.projectId);
   if (!projectId) {
@@ -76,6 +94,30 @@ app.get('/api/projects/:projectId', (req, res, next) => {
   const param = [projectId];
 
   db.query(sql, param)
+    .then(result => {
+      const currentTasks = [];
+      const forReview = [];
+      const completed = [];
+      const backlog = [];
+
+      const editedResult = [currentTasks, forReview, completed, backlog];
+
+      for (let i = 0; i < result.rows.length; i++) {
+        const task = result.rows[i];
+        editedResult[task.statusId - 1].push(task);
+      }
+      res.json(editedResult);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/statuses', (req, res, next) => {
+  const sql = `
+    select "statusId",
+           "statusName"
+      from "statuses"
+  `;
+  db.query(sql)
     .then(result => {
       res.json(result.rows);
     })

@@ -13,4 +13,8 @@ values (default, 'App Refactor'),
 
 insert into "tasks" ("taskId", "statusId", "userId", "projectId", "taskName", "description", "dateCreated", "deadline", "files")
 values (default, 1, 1, 1, 'User Dependency Injection','created data model', 'Dec 23, 2020', 'Jan 2, 2021', 'test.txt'),
-       (default, 1, 1, 1, 'User Testing', 'perform user testing', 'Dec 31, 2020', 'Jan 4, 2021', 'text.txt');
+       (default, 1, 1, 1, 'User Testing', 'perform user testing', 'Dec 31, 2020', 'Jan 4, 2021', 'text.txt'),
+       (default, 2, 1, 1, 'Create Figma', 'create figma for project', 'Dec 31, 2020', 'Jan 4, 2021', 'text.txt'),
+       (default, 3, 1, 1, 'Create Project Features', 'perform user testing', 'Dec 31, 2020', 'Jan 4, 2021', 'text.txt'),
+       (default, 4, 1, 1, 'Create Data Model', 'perform user testing', 'Dec 31, 2020', 'Jan 4, 2021', 'text.txt'),
+       (default, 1, 1, 2, 'Create Body', 'create body for body shaping', 'Dec 31, 2020', 'Jan 4, 2021', 'text.txt');
