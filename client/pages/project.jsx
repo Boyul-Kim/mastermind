@@ -29,9 +29,9 @@ export default class Project extends React.Component {
               this.state.project.map(projectDetail => (
                 <div key={projectDetail.projectId} >
                   {
-                        <div>
-                          <h2 className="homepage-font mt-4 mb-4">{projectDetail.projectName}</h2>
-                        </div>
+                    <div>
+                      <h2 className="homepage-font mt-4 mb-4">{projectDetail.projectName}</h2>
+                    </div>
                   }
                 </div>
               ))
