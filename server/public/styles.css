@@ -48,3 +48,12 @@
 .homepage-font {
   color: rgb(5, 56, 107);
 }
+
+.status-scroll {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.status-scroll .status {
+  display: inline-block;
+}

@@ -51,6 +51,24 @@ app.get('/api/home/:projectId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/projects/titles/:projectId', (req, res, next) => {
+  const projectId = Number(req.params.projectId);
+  const sql = `
+    select "projectId",
+           "projectName"
+      from "project"
+      where "projectId" = ($1)
+  `;
+
+  const param = [projectId];
+
+  db.query(sql, param)
+    .then(result => {
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/projects/:projectId', (req, res, next) => {
   const projectId = Number(req.params.projectId);
   if (!projectId) {
@@ -76,6 +94,42 @@ app.get('/api/projects/:projectId', (req, res, next) => {
   const param = [projectId];
 
   db.query(sql, param)
+    .then(result => {
+      const currentTask = [];
+      const forReview = [];
+      const completed = [];
+      const backlog = [];
+      const editedResult = [];
+
+      for (let i = 0; i <= result.rows.length - 1; i++) {
+        if (result.rows[i].statusId === 1) {
+          currentTask.push(result.rows[i]);
+        } else if (result.rows[i].statusId === 2) {
+          forReview.push(result.rows[i]);
+        } else if (result.rows[i].statusId === 3) {
+          completed.push(result.rows[i]);
+        } else if (result.rows[i].statusId === 4) {
+          backlog.push(result.rows[i]);
+        }
+      }
+
+      editedResult.push(currentTask);
+      editedResult.push(forReview);
+      editedResult.push(completed);
+      editedResult.push(backlog);
+
+      res.json(editedResult);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/statuses', (req, res, next) => {
+  const sql = `
+    select "statusId",
+           "statusName"
+      from "statuses"
+  `;
+  db.query(sql)
     .then(result => {
       res.json(result.rows);
     })
