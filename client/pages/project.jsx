@@ -30,7 +30,7 @@ export default class Project extends React.Component {
                 <div key={projectDetail.projectId} >
                   {
                         <div>
-                          <h2 className="homepage-font">{projectDetail.projectName}</h2>
+                          <h2 className="homepage-font mt-4 mb-4">{projectDetail.projectName}</h2>
                         </div>
                   }
                 </div>
