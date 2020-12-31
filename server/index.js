@@ -95,29 +95,17 @@ app.get('/api/projects/:projectId', (req, res, next) => {
 
   db.query(sql, param)
     .then(result => {
-      const currentTask = [];
+      const currentTasks = [];
       const forReview = [];
       const completed = [];
       const backlog = [];
-      const editedResult = [];
 
-      for (let i = 0; i <= result.rows.length - 1; i++) {
-        if (result.rows[i].statusId === 1) {
-          currentTask.push(result.rows[i]);
-        } else if (result.rows[i].statusId === 2) {
-          forReview.push(result.rows[i]);
-        } else if (result.rows[i].statusId === 3) {
-          completed.push(result.rows[i]);
-        } else if (result.rows[i].statusId === 4) {
-          backlog.push(result.rows[i]);
-        }
+      const editedResult = [currentTasks, forReview, completed, backlog];
+
+      for (let i = 0; i < result.rows.length; i++) {
+        const task = result.rows[i];
+        editedResult[task.statusId - 1].push(task);
       }
-
-      editedResult.push(currentTask);
-      editedResult.push(forReview);
-      editedResult.push(completed);
-      editedResult.push(backlog);
-
       res.json(editedResult);
     })
     .catch(err => next(err));
