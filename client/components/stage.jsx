@@ -1,12 +1,28 @@
 import React from 'react';
 
 export default class Stage extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.handleNewTask = this.handleNewTask.bind(this);
+  // }
+
+  // handleNewTask() {
+
+  // }
+
   render() {
     return (
       <div className="d-inline-block">
         <div className="card mr-4">
           <div className="card-body">
-            <h4>{this.props.title}</h4>
+            <div className="row">
+              <h3 className="col">{this.props.title}</h3>
+              <a href="#newTask">
+                <i onClick={this.handleNewTask} className="fas fa-plus fa-2x col text-right"></i>
+              </a>
+
+            </div>
+
             {
               this.props.tasks.map(task => {
                 return (
