@@ -1,14 +1,6 @@
 import React from 'react';
 
 export default class Stage extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.handleNewTask = this.handleNewTask.bind(this);
-  // }
-
-  // handleNewTask() {
-
-  // }
 
   render() {
     return (
@@ -17,7 +9,7 @@ export default class Stage extends React.Component {
           <div className="card-body">
             <div className="row">
               <h3 className="col">{this.props.title}</h3>
-              <a href="#newTask">
+              <a href={`#newTask?projectId=${this.props.projectId}`}>
                 <i onClick={this.handleNewTask} className="fas fa-plus fa-2x col text-right"></i>
               </a>
 

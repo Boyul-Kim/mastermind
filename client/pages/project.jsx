@@ -37,7 +37,7 @@ export default class Project extends React.Component {
           <div className="status-scroll">
             {
               this.state.tasks.map((stage, index) => {
-                return <Stage key={stage.taskId} title={stageTitles[index]} tasks={stage} />;
+                return <Stage key={stage.taskId} title={stageTitles[index]} tasks={stage} projectId={this.props.projectId}/>;
               })
             }
           </div>

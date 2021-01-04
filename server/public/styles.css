@@ -53,3 +53,7 @@
   white-space: nowrap;
   overflow-x: auto;
 }
+
+.time-width {
+  width: 9rem;
+}
