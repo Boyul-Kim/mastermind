@@ -1,5 +1,4 @@
 import React from 'react';
-import parseRoute from '../lib/parse-route';
 
 export default class NewTask extends React.Component {
   constructor(props) {
@@ -13,42 +12,19 @@ export default class NewTask extends React.Component {
       description: '',
       projectId: ''
     };
-    this.handleChangeTaskName = this.handleChangeTaskName.bind(this);
-    this.handleChangeDateCreated = this.handleChangeDateCreated.bind(this);
-    this.handleChangeDeadline = this.handleChangeDeadline.bind(this);
-    this.handleChangeDescription = this.handleChangeDescription.bind(this);
-    this.handleChangeStatus = this.handleChangeStatus.bind(this);
-    this.handleChangeUserId = this.handleChangeUserId.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    const route = parseRoute(window.location.hash);
-    this.setState({ projectId: Number(route.params.get('projectId')) });
+    this.setState({ projectId: Number(this.props.projectId) });
   }
 
-  handleChangeTaskName(event) {
-    this.setState({ taskName: event.target.value });
-  }
-
-  handleChangeStatus(event) {
-    this.setState({ statusId: Number(event.target.value) });
-  }
-
-  handleChangeDateCreated(event) {
-    this.setState({ dateCreated: event.target.value });
-  }
-
-  handleChangeDeadline(event) {
-    this.setState({ deadline: event.target.value });
-  }
-
-  handleChangeUserId(event) {
-    this.setState({ userId: Number(event.target.value) });
-  }
-
-  handleChangeDescription(event) {
-    this.setState({ description: event.target.value });
+  handleChange(event) {
+    const { name, value } = event.target;
+    const newState = {};
+    newState[name] = value;
+    this.setState(newState);
   }
 
   handleSubmit(event) {
@@ -60,21 +36,23 @@ export default class NewTask extends React.Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/tasks/create', req);
+    fetch('/api/tasks/create', req)
+      .then(res => res.json());
   }
 
   render() {
+
     return (
       <div className="container-fluid mt-3">
         <h2>Create Task</h2>
 
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <input type="text" className="form-control" id="taskName" placeholder="Task Name" onChange={this.handleChangeTaskName} />
+            <input type="text" className="form-control" id="taskName" placeholder="Task Name" onChange={this.handleChange} name="taskName" />
           </div>
 
           <div className="form-group">
-            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChangeStatus}>
+            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="statusId">
               <option defaultValue>Status</option>
               <option value="1">Current Task</option>
               <option value="2">For Review</option>
@@ -85,15 +63,15 @@ export default class NewTask extends React.Component {
 
           <div className="form-group row d-flex justify-content-center">
             <div>
-              <input type="text" className="form-control form-control-sm time-width mr-4" id="dateCreated" placeholder="Date Created" onChange={this.handleChangeDateCreated} />
+              <input type="text" className="form-control form-control-sm time-width mr-4" id="dateCreated" placeholder="Date Created" onChange={this.handleChange} name="dateCreated" />
             </div>
             <div>
-              <input type="text" className="form-control form-control-sm time-width ml-4" id="deadline" placeholder="Deadline" onChange={this.handleChangeDeadline}/>
+              <input type="text" className="form-control form-control-sm time-width ml-4" id="deadline" placeholder="Deadline" onChange={this.handleChange} name="deadline"/>
             </div>
           </div>
 
           <div className="form-group">
-            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChangeUserId}>
+            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="userId">
               <option defaultValue>User assigned</option>
               <option value="1">BoyulKim</option>
             </select>
@@ -101,10 +79,11 @@ export default class NewTask extends React.Component {
 
           <div className="form-group">
             <label htmlFor="description">Task description</label>
-            <textarea className="form-control" name="description" id="description" cols="30" rows="5" onChange={this.handleChangeDescription}></textarea>
+            <textarea className="form-control" name="description" id="description" cols="30" rows="5" onChange={this.handleChange} ></textarea>
           </div>
 
           <button type="submit" className="btn btn-danger mt-5">Submit</button>
+
         </form>
       </div>
     );

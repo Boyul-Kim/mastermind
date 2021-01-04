@@ -132,14 +132,15 @@ app.post('/api/tasks/create', (req, res, next) => {
 
   const sql = `
   insert into "tasks" ("taskId", "statusId", "userId", "projectId", "taskName", "description", "dateCreated", "deadline")
-               values (default, $1, $2, $3, $4, $5, $6, $7);
+               values (default, $1, $2, $3, $4, $5, $6, $7)
+               returning "taskId", "statusId", "userId", "projectId", "taskName", "description", "dateCreated", "deadline";
   `;
 
   const params = [statusId, userId, projectId, taskName, description, dateCreated, deadline];
 
   db.query(sql, params)
     .then(result => {
-      res.status(201).json(result.rows);
+      res.status(201).json(result.rows[0]);
     })
     .catch(err => next(err));
 });
