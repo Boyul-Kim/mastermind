@@ -6,13 +6,13 @@ export default class Task extends React.Component {
       <div className="container-fluid mt-3">
         <h2>Create Task</h2>
 
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <div className="form-group">
-            <input type="text" className="form-control" id="taskName" placeholder="Task Name" onChange={this.handleChange} name="taskName" />
+            <input type="text" className="form-control" id="taskName" placeholder="Task Name" name="taskName" />
           </div>
 
           <div className="form-group">
-            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="statusId">
+            <select className="custom-select custom-select-sm mb-3" name="statusId">
               <option defaultValue>Status</option>
               <option value="1">Current Task</option>
               <option value="2">For Review</option>
@@ -31,7 +31,7 @@ export default class Task extends React.Component {
           </div>
 
           <div className="form-group">
-            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="userId">
+            <select className="custom-select custom-select-sm mb-3" name="userId">
               <option defaultValue>User assigned</option>
               <option value="1">BoyulKim</option>
             </select>
@@ -39,7 +39,7 @@ export default class Task extends React.Component {
 
           <div className="form-group">
             <label htmlFor="description">Task description</label>
-            <textarea className="form-control" name="description" id="description" cols="30" rows="5" onChange={this.handleChange} ></textarea>
+            <textarea className="form-control" name="description" id="description" cols="30" rows="5" ></textarea>
           </div>
 
           <button type="submit" className="btn btn-danger mt-5">Submit</button>

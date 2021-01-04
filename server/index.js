@@ -145,6 +145,29 @@ app.post('/api/tasks/create', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/tasks/view/:taskId', (req, res, next) => {
+
+  const taskId = Number(req.params.taskId);
+  if (!taskId) {
+    throw new ClientError(400, 'taskId must be a positive integer');
+  }
+
+  const sql = `
+    select *
+    from "tasks"
+    where "taskId" = ($1)
+  `;
+
+  const param = [taskId];
+
+  db.query(sql, param)
+    .then(result => {
+      res.status(200).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+
+});
+
 app.post('/api/signup', (req, res, next) => {
   const { username, password, email } = req.body;
   if (!username || !password || !email) {
