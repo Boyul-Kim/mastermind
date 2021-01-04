@@ -37,7 +37,7 @@ CREATE TABLE "tasks" (
 	"description" TEXT NOT NULL,
 	"dateCreated" TEXT NOT NULL,
 	"deadline" TEXT NOT NULL,
-	"files" TEXT NOT NULL,
+	"files" TEXT,
 	CONSTRAINT "tasks_pk" PRIMARY KEY ("taskId")
 ) WITH (
   OIDS=FALSE

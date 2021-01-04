@@ -124,6 +124,27 @@ app.get('/api/statuses', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/tasks/create', (req, res, next) => {
+  const { userId, taskName, statusId, description, dateCreated, deadline, projectId } = req.body;
+  if (!userId || !taskName || !statusId || !description || !dateCreated || !deadline) {
+    throw new ClientError(400, 'User ID, task name, status ID, description, date created and deadline are required');
+  }
+
+  const sql = `
+  insert into "tasks" ("taskId", "statusId", "userId", "projectId", "taskName", "description", "dateCreated", "deadline")
+               values (default, $1, $2, $3, $4, $5, $6, $7)
+               returning "taskId", "statusId", "userId", "projectId", "taskName", "description", "dateCreated", "deadline";
+  `;
+
+  const params = [statusId, userId, projectId, taskName, description, dateCreated, deadline];
+
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/signup', (req, res, next) => {
   const { username, password, email } = req.body;
   if (!username || !password || !email) {
