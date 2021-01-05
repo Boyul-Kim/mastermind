@@ -174,7 +174,7 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
 
   db.query(sql, param)
     .then(result => {
-      res.status(200).json(result.rows);
+      res.status(200).json(result.rows[0]);
     })
     .catch(err => next(err));
 

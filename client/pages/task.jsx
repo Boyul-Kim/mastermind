@@ -25,32 +25,32 @@ export default class Task extends React.Component {
           return (
             <div key={task.taskId} className="mt-3">
               <h6>Task Name</h6>
-              <div className="viewTask">
-                <div className="ml-2">
+              <div className="view-task">
+                <div className="ml-2 mt-1">
                   {task.taskName}
                 </div>
               </div>
 
               <h6 className="mt-2">Status Name</h6>
-              <div className="viewTask mt-2">
-                <div className="ml-2">
+              <div className="view-task mt-2">
+                <div className="ml-2 mt-1">
                   {task.statusName}
                 </div>
               </div>
 
               <div className="d-flex flex-row mt-2">
-                <h6 className="width-50 ml-2">Date Created</h6>
-                <h6 className="width-50 ml-2">Deadline</h6>
+                <h6 className="width-50">Date Created</h6>
+                <h6 className="width-50 ml-5">Deadline</h6>
               </div>
 
-              <div className="d-flex flex-row justify-content-around">
-                <div className="viewTask width-45">
-                  <div className="ml-2">
+              <div className="d-flex flex-row justify-content-around p-0">
+                <div className="view-task width-50 mr-5 p-0">
+                  <div className="ml-2 mt-1">
                     {task.dateCreated}
                   </div>
                 </div>
-                <div className="viewTask width-45">
-                  <div className="ml-2">
+                <div className="view-task width-50 mr-0 p-0">
+                  <div className="ml-2 mt-1">
                     {task.deadline}
                   </div>
 
@@ -59,14 +59,14 @@ export default class Task extends React.Component {
               </div>
 
               <h6 className="mt-2">Username</h6>
-              <div className="viewTask mt-2">
-                <div className="ml-2">
+              <div className="view-task mt-2">
+                <div className="ml-2 mt-1">
                   {task.username}
                 </div>
               </div>
 
               <h6 className="mt-2">Description</h6>
-              <div className="viewTask height-desc mt-2">
+              <div className="view-task height-desc mt-2">
                 <div className="ml-2">
                   {task.description}
                 </div>
