@@ -47,7 +47,8 @@ export default class App extends React.Component {
 
     if (path === 'task') {
       const taskId = this.state.route.params.get('taskId');
-      return <Task taskId={taskId} />;
+      const projectId = this.state.route.params.get('projectId');
+      return <Task taskId={taskId} projectId={projectId}/>;
     }
 
     if (path === 'project') {
