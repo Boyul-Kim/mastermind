@@ -57,3 +57,21 @@
 .time-width {
   width: 9rem;
 }
+
+.view-task {
+  border: solid 1px rgb(180, 179, 179);
+  border-radius: 0.25rem;
+  height: 2.25rem;
+}
+
+.width-45 {
+  width: 45%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.height-desc {
+  height: 8rem;
+}

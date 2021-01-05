@@ -1,50 +1,88 @@
 import React from 'react';
 
 export default class Task extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      task: null
+    };
+  }
+
+  componentDidMount() {
+    fetch(`/api/tasks/view/${this.props.taskId}`)
+      .then(res => res.json())
+      .then(result => this.setState({ task: result }));
+  }
+
   render() {
     return (
       <div className="container-fluid mt-3">
-        <h2>Create Task</h2>
+        <h2>View Task</h2>
 
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input type="text" className="form-control" id="taskName" placeholder="Task Name" onChange={this.handleChange} name="taskName" />
-          </div>
+        <div className="mt-3">
+            <h6>Task Name</h6>
 
-          <div className="form-group">
-            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="statusId">
-              <option defaultValue>Status</option>
-              <option value="1">Current Task</option>
-              <option value="2">For Review</option>
-              <option value="3">Completed</option>
-              <option value="4">Backlog</option>
-            </select>
-          </div>
+              <div className="view-task">
+                {this.state.task &&
+                  <div className="ml-2 mt-1">
+                    {this.state.task.taskName}
+                  </div>
+                }
+              </div>
 
-          <div className="form-group row d-flex justify-content-center">
-            <div>
-              <input type="text" className="form-control form-control-sm time-width mr-4" id="dateCreated" placeholder="Date Created" onChange={this.handleChange} name="dateCreated" />
+            <h6 className="mt-2">Status Name</h6>
+
+              <div className="view-task mt-2">
+                {this.state.task &&
+                  <div className="ml-2 mt-1">
+                    {this.state.task.statusName}
+                  </div>
+                }
+              </div>
+
+            <div className="d-flex flex-row mt-2">
+              <h6 className="width-50">Date Created</h6>
+              <h6 className="width-50 ml-5">Deadline</h6>
             </div>
-            <div>
-              <input type="text" className="form-control form-control-sm time-width ml-4" id="deadline" placeholder="Deadline" onChange={this.handleChange} name="deadline" />
+
+            <div className="d-flex flex-row justify-content-around p-0">
+              <div className="view-task width-50 mr-5 p-0">
+                {this.state.task &&
+                  <div className="ml-2 mt-1">
+                    {this.state.task.dateCreated}
+                  </div>
+                }
+              </div>
+              <div className="view-task width-50 mr-0 p-0">
+                  {this.state.task &&
+                    <div className="ml-2 mt-1">
+                      {this.state.task.deadline}
+                    </div>
+                  }
+              </div>
             </div>
-          </div>
 
-          <div className="form-group">
-            <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="userId">
-              <option defaultValue>User assigned</option>
-              <option value="1">BoyulKim</option>
-            </select>
-          </div>
+            <h6 className="mt-2">Username</h6>
+            <div className="view-task mt-2">
+              {this.state.task &&
+                <div className="ml-2 mt-1">
+                  {this.state.task.username}
+                </div>
+              }
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="description">Task description</label>
-            <textarea className="form-control" name="description" id="description" cols="30" rows="5" onChange={this.handleChange} ></textarea>
-          </div>
+            <h6 className="mt-2">Description</h6>
+            <div className="view-task height-desc mt-2">
+              {this.state.task &&
+                <div className="ml-2">
+                  {this.state.task.description}
+                </div>
+              }
+            </div>
 
-          <button type="submit" className="btn btn-danger mt-5">Submit</button>
+        </div>
 
-        </form>
       </div>
     );
   }
