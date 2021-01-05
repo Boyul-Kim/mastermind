@@ -174,6 +174,9 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
 
   db.query(sql, param)
     .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find taskId ${taskId}`);
+      }
       res.status(200).json(result.rows[0]);
     })
     .catch(err => next(err));
