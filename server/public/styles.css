@@ -57,3 +57,8 @@
 .time-width {
   width: 9rem;
 }
+
+.viewTask {
+  border: solid 1px rgb(134, 134, 134);
+  height: 2.25rem;
+}

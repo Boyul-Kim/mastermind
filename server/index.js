@@ -153,8 +153,20 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
   }
 
   const sql = `
-    select *
+    select "taskId",
+        "projectId",
+        "projectName",
+        "statusId",
+        "statusName",
+        "taskName",
+        "username",
+        "dateCreated",
+        "deadline",
+        "description"
     from "tasks"
+    join "project" using ("projectId")
+    join "statuses" using ("statusId")
+    join "users" using ("userId")
     where "taskId" = ($1)
   `;
 
@@ -162,7 +174,7 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
 
   db.query(sql, param)
     .then(result => {
-      res.status(200).json(result.rows[0]);
+      res.status(200).json(result.rows);
     })
     .catch(err => next(err));
 
