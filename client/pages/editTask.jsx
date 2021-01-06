@@ -60,15 +60,17 @@ export default class EditTask extends React.Component {
         <h2>Edit Task</h2>
 
         <form onSubmit={this.handleSubmit}>
+          <h6>Task Name</h6>
           {this.state.taskName &&
             <div className="form-group">
               <input type="text" className="form-control" id="taskName" value={this.state.taskName} onChange={this.handleChange} name="taskName" />
             </div>
           }
 
+          <h6>Status Name</h6>
           {this.state.statusName &&
             <div className="form-group">
-              <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="statusId">
+              <select className="custom-select custom-select-sm" onChange={this.handleChange} name="statusId">
                 <option value={this.state.statusId}>{this.state.statusName}</option>
                 <option value="1">Current Task</option>
                 <option value="2">For Review</option>
@@ -78,29 +80,41 @@ export default class EditTask extends React.Component {
             </div>
           }
 
-          {this.state.dateCreated && this.state.deadline &&
-            <div className="form-group row d-flex justify-content-center">
-              <div>
-                <input type="text" className="form-control form-control-sm time-width mr-4" id="dateCreated" value={this.state.dateCreated} onChange={this.handleChange} name="dateCreated" />
-              </div>
-              <div>
-                <input type="text" className="form-control form-control-sm time-width ml-4" id="deadline" value={this.state.deadline} onChange={this.handleChange} name="deadline" />
-              </div>
-            </div>
-          }
+          <div className="d-flex flex-row">
+            <h6 className="width-50">Date Created</h6>
+            <h6 className="width-50 ml-5">Deadline</h6>
+          </div>
 
+          <div className="d-flex flex-row justify-content-around p-0">
+            <div className="width-50 mr-5 p-0">
+              {this.state.dateCreated &&
+                <div className="mt-1">
+                <input type="text" className="form-control form-control-sm time-width" id="dateCreated" value={this.state.dateCreated} onChange={this.handleChange} name="dateCreated" />
+                </div>
+              }
+            </div>
+            <div className="width-50 mr-0 p-0">
+              {this.state.deadline &&
+                <div className="mt-1">
+                <input type="text" className="form-control form-control-sm time-width" id="deadline" value={this.state.deadline} onChange={this.handleChange} name="deadline" />
+                </div>
+              }
+            </div>
+          </div>
+
+          <h6 className="mt-3">Username</h6>
           {this.state.username &&
             <div className="form-group">
-              <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="userId">
+              <select className="custom-select custom-select-sm" onChange={this.handleChange} name="userId">
                 <option value={this.state.userId}>{this.state.username}</option>
                 <option value="1">BoyulKim</option>
               </select>
             </div>
           }
 
+          <h6>Description</h6>
           {this.state.description &&
             <div className="form-group">
-              <label htmlFor="description">Task description</label>
             <textarea className="form-control" name="description" id="description" value={this.state.description} cols="30" rows="5" onChange={this.handleChange} ></textarea>
             </div>
           }
