@@ -105,7 +105,7 @@ export default class EditTask extends React.Component {
             </div>
           }
 
-          <button type="submit" className="btn btn-danger mt-5">Submit</button>
+          <button type="submit" className="btn btn-danger mt-3">Submit</button>
 
         </form>
       </div>
