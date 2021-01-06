@@ -6,6 +6,7 @@ const pg = require('pg');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const errorMiddleware = require('./error-middleware');
+// const authorizationMiddleware = require('./authorization-middleware');
 
 const app = express();
 
