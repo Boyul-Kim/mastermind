@@ -10,8 +10,8 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-
-    fetch('/api/home/projects', { method: 'GET' })
+    const token = window.localStorage.getItem('user-jwt');
+    fetch('/api/home/projects', { headers: { 'X-Access-Token': token } })
       .then(res => res.json())
       .then(result => {
         this.setState({ projects: this.state.projects.concat(result) });

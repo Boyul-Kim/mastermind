@@ -19,7 +19,8 @@ export default class EditTask extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/tasks/view/${this.props.taskId}`)
+    const token = window.localStorage.getItem('user-jwt');
+    fetch(`/api/tasks/view/${this.props.taskId}`, { headers: { 'X-Access-Token': token } })
       .then(res => res.json())
       .then(result => this.setState({
         taskName: result.taskName,
@@ -42,10 +43,12 @@ export default class EditTask extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const token = window.localStorage.getItem('user-jwt');
     const req = {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(this.state)
     };
