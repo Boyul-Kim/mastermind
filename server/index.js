@@ -308,6 +308,20 @@ app.put('/api/tasks/edit/:taskId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/users', (req, res, next) => {
+  const sql = `
+    select "userId",
+           "username"
+    from "users"
+  `;
+
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
