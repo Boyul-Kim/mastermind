@@ -38,6 +38,7 @@ export default class NewTask extends React.Component {
     };
     fetch('/api/tasks/create', req)
       .then(res => res.json());
+    window.location.hash = `#project?projectId=${this.props.projectId}`;
   }
 
   render() {

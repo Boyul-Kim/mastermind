@@ -162,7 +162,8 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
         "username",
         "dateCreated",
         "deadline",
-        "description"
+        "description",
+        "userId"
     from "tasks"
     join "project" using ("projectId")
     join "statuses" using ("statusId")

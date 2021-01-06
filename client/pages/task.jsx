@@ -81,7 +81,7 @@ export default class Task extends React.Component {
               }
             </div>
 
-          <a href={`#newTask?projectId=${this.props.projectId}`}>
+          <a href={`#editTask?projectId=${this.props.projectId}&taskId=${this.props.taskId}`}>
             <button type="submit" className="btn btn-danger mt-4 button-width">Edit</button>
           </a>
 
