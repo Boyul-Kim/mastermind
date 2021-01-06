@@ -208,10 +208,16 @@ app.get('/api/statuses', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.post('/api/tasks/create', (req, res, next) => {
-  const { userId, taskName, statusId, description, dateCreated, deadline, projectId } = req.body;
+app.post('/api/tasks/create/:projectId', (req, res, next) => {
+  const asssignedTo = req.user.userId;
+  const projectId = Number(req.params.projectId);
+  const { userId, taskName, statusId, description, dateCreated, deadline } = req.body;
   if (!userId || !taskName || !statusId || !description || !dateCreated || !deadline) {
     throw new ClientError(400, 'User ID, task name, status ID, description, date created and deadline are required');
+  }
+
+  if (Number(asssignedTo) !== Number(userId)) {
+    throw new ClientError(400, 'UserId and assignedTo must match');
   }
 
   const sql = `
@@ -269,10 +275,15 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
 });
 
 app.put('/api/tasks/edit/:taskId', (req, res, next) => {
+  const asssignedTo = req.user.userId;
 
   const { userId, taskName, statusId, description, dateCreated, deadline } = req.body;
   if (!userId || !taskName || !statusId || !description || !dateCreated || !deadline) {
     throw new ClientError(400, 'User ID, task name, status ID, description, date created and deadline are required');
+  }
+
+  if (Number(asssignedTo) !== Number(userId)) {
+    throw new ClientError(400, 'UserId and assignedTo must match');
   }
 
   const taskId = Number(req.params.taskId);

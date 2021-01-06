@@ -10,7 +10,6 @@ export default class NewTask extends React.Component {
       deadline: '',
       userId: '',
       description: '',
-      projectId: '',
       users: []
     };
     this.handleChange = this.handleChange.bind(this);
@@ -18,7 +17,7 @@ export default class NewTask extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ projectId: Number(this.props.projectId) });
+
     const token = window.localStorage.getItem('user-jwt');
     fetch('/api/users', { headers: { 'X-Access-Token': token } })
       .then(res => res.json())
@@ -45,13 +44,12 @@ export default class NewTask extends React.Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/tasks/create', req)
+    fetch(`/api/tasks/create/${this.props.projectId}`, req)
       .then(res => res.json());
     window.location.hash = `#project?projectId=${this.props.projectId}`;
   }
 
   render() {
-
     return (
       <div className="container-fluid mt-3">
         <h2>Create Task</h2>
