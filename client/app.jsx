@@ -3,6 +3,7 @@ import Login from './pages/login';
 import Home from './pages/home';
 import Task from './pages/task';
 import NewTask from './pages/newTask';
+import EditTask from './pages/editTask';
 import Project from './pages/project';
 import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
@@ -40,6 +41,12 @@ export default class App extends React.Component {
   renderPage() {
     const { path } = this.state.route;
 
+    if (path === 'editTask') {
+      const taskId = this.state.route.params.get('taskId');
+      const projectId = this.state.route.params.get('projectId');
+      return <EditTask taskId={taskId} projectId={projectId} />;
+    }
+
     if (path === 'newTask') {
       const projectId = this.state.route.params.get('projectId');
       return <NewTask projectId={projectId}/>;
@@ -47,7 +54,8 @@ export default class App extends React.Component {
 
     if (path === 'task') {
       const taskId = this.state.route.params.get('taskId');
-      return <Task taskId={taskId} />;
+      const projectId = this.state.route.params.get('projectId');
+      return <Task taskId={taskId} projectId={projectId}/>;
     }
 
     if (path === 'project') {

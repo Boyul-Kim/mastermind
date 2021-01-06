@@ -162,7 +162,8 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
         "username",
         "dateCreated",
         "deadline",
-        "description"
+        "description",
+        "userId"
     from "tasks"
     join "project" using ("projectId")
     join "statuses" using ("statusId")
@@ -181,6 +182,42 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
     })
     .catch(err => next(err));
 
+});
+
+app.put('/api/tasks/edit/:taskId', (req, res, next) => {
+
+  const { userId, taskName, statusId, description, dateCreated, deadline } = req.body;
+  if (!userId || !taskName || !statusId || !description || !dateCreated || !deadline) {
+    throw new ClientError(400, 'User ID, task name, status ID, description, date created and deadline are required');
+  }
+
+  const taskId = Number(req.params.taskId);
+  if (!taskId) {
+    throw new ClientError(400, 'taskId must be a positive integer');
+  }
+
+  const sql = `
+  update "tasks"
+  set "statusId" = ($1),
+      "taskName" = ($2),
+      "userId" = ($3),
+      "description" = ($4),
+      "dateCreated" = ($5),
+      "deadline" = ($6)
+  where "taskId" = ($7)
+  returning "taskId", "statusId", "userId", "taskName", "description", "dateCreated", "deadline";
+  `;
+
+  const params = [statusId, taskName, userId, description, dateCreated, deadline, taskId];
+
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find taskId ${taskId}`);
+      }
+      res.status(200).json(result.rows[0]);
+    })
+    .catch(err => next(err));
 });
 
 app.post('/api/signup', (req, res, next) => {
