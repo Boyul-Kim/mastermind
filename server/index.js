@@ -91,10 +91,6 @@ app.post('/api/login', (req, res, next) => {
 app.use(authorizationMiddleware);
 
 app.get('/api/home/projects', (req, res, next) => {
-  // const sql = `
-  //   select *
-  //   from "project"
-  // `;
   const { userId } = req.user;
   const sql = `
     select "projectId",
@@ -309,13 +305,18 @@ app.put('/api/tasks/edit/:taskId', (req, res, next) => {
 });
 
 app.get('/api/users', (req, res, next) => {
+  const { userId } = req.user;
+
   const sql = `
     select "userId",
            "username"
     from "users"
+    where "userId" = ($1)
   `;
 
-  db.query(sql)
+  const param = [userId];
+
+  db.query(sql, param)
     .then(result => {
       res.json(result.rows);
     })
