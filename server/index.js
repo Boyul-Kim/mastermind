@@ -102,12 +102,6 @@ app.get('/api/home/projects', (req, res, next) => {
     group by "projectId"
   `;
 
-  // const sql = `
-  //   select *
-  //   from "project"
-  //   where "userId" = ($1)
-  // `;
-
   const param = [userId];
 
   db.query(sql, param)
@@ -159,10 +153,10 @@ app.get('/api/projects/titles/:projectId', (req, res, next) => {
 });
 
 app.post('/api/projects/create', (req, res, next) => {
-  const { userId } = req.user;
   const asssignedTo = req.user.userId;
 
   const { projectName } = req.body;
+  const userId = req.body.users[0].userId;
   if (!projectName) {
     throw new ClientError(400, 'project name required');
   }
