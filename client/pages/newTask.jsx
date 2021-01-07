@@ -10,14 +10,20 @@ export default class NewTask extends React.Component {
       deadline: '',
       userId: '',
       description: '',
-      projectId: ''
+      users: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ projectId: Number(this.props.projectId) });
+
+    const token = window.localStorage.getItem('user-jwt');
+    fetch('/api/users', { headers: { 'X-Access-Token': token } })
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ users: this.state.users.concat(result) });
+      });
   }
 
   handleChange(event) {
@@ -29,20 +35,21 @@ export default class NewTask extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const token = window.localStorage.getItem('user-jwt');
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/tasks/create', req)
+    fetch(`/api/tasks/create/${this.props.projectId}`, req)
       .then(res => res.json());
     window.location.hash = `#project?projectId=${this.props.projectId}`;
   }
 
   render() {
-
     return (
       <div className="container-fluid mt-3">
         <h2>Create Task</h2>
@@ -74,7 +81,11 @@ export default class NewTask extends React.Component {
           <div className="form-group">
             <select className="custom-select custom-select-sm mb-3" onChange={this.handleChange} name="userId">
               <option defaultValue>User assigned</option>
-              <option value="1">BoyulKim</option>
+              {
+                this.state.users.map(user => (
+                  <option key={user.userId} value={user.userId}>{user.username}</option>
+                ))
+              }
             </select>
           </div>
 

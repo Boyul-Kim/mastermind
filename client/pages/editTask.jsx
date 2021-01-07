@@ -12,14 +12,16 @@ export default class EditTask extends React.Component {
       userId: '',
       description: '',
       username: '',
-      statusName: ''
+      statusName: '',
+      users: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    fetch(`/api/tasks/view/${this.props.taskId}`)
+    const token = window.localStorage.getItem('user-jwt');
+    fetch(`/api/tasks/view/${this.props.taskId}`, { headers: { 'X-Access-Token': token } })
       .then(res => res.json())
       .then(result => this.setState({
         taskName: result.taskName,
@@ -31,6 +33,12 @@ export default class EditTask extends React.Component {
         statusName: result.statusName,
         username: result.username
       }));
+
+    fetch('/api/users', { headers: { 'X-Access-Token': token } })
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ users: this.state.users.concat(result) });
+      });
   }
 
   handleChange(event) {
@@ -42,10 +50,12 @@ export default class EditTask extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const token = window.localStorage.getItem('user-jwt');
     const req = {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
       },
       body: JSON.stringify(this.state)
     };
@@ -107,7 +117,11 @@ export default class EditTask extends React.Component {
             <div className="form-group">
               <select className="custom-select custom-select-sm" onChange={this.handleChange} name="userId">
                 <option value={this.state.userId}>{this.state.username}</option>
-                <option value="1">BoyulKim</option>
+              {
+                this.state.users.map(user => (
+                  <option key={user.userId} value={user.userId}>{user.username}</option>
+                ))
+              }
               </select>
             </div>
           }

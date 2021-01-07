@@ -10,7 +10,8 @@ export default class Task extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/tasks/view/${this.props.taskId}`)
+    const token = window.localStorage.getItem('user-jwt');
+    fetch(`/api/tasks/view/${this.props.taskId}`, { headers: { 'X-Access-Token': token } })
       .then(res => res.json())
       .then(result => this.setState({ task: result }));
   }

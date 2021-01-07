@@ -11,11 +11,12 @@ export default class Project extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/projects/${this.props.projectId}`)
+    const token = window.localStorage.getItem('user-jwt');
+    fetch(`/api/projects/${this.props.projectId}`, { headers: { 'X-Access-Token': token } })
       .then(res => res.json())
       .then(result => this.setState({ tasks: result }));
 
-    fetch(`/api/projects/titles/${this.props.projectId}`)
+    fetch(`/api/projects/titles/${this.props.projectId}`, { headers: { 'X-Access-Token': token } })
       .then(res => res.json())
       .then(result => this.setState({ project: result }));
   }
