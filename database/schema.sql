@@ -11,6 +11,7 @@ CREATE TABLE "users" (
 	"username" TEXT NOT NULL,
 	"hashedPassword" TEXT NOT NULL,
 	"email" TEXT NOT NULL,
+	"userMap" serial NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
@@ -34,7 +35,7 @@ CREATE TABLE "tasks" (
 	"userId" integer NOT NULL,
 	"projectId" integer NOT NULL,
 	"taskName" TEXT NOT NULL,
-	"description" TEXT NOT NULL,
+	"description" TEXT,
 	"dateCreated" TEXT NOT NULL,
 	"deadline" TEXT NOT NULL,
 	"files" TEXT,

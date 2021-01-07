@@ -102,6 +102,12 @@ app.get('/api/home/projects', (req, res, next) => {
     group by "projectId"
   `;
 
+  // const sql = `
+  //   select *
+  //   from "project"
+  //   where "userId" = ($1)
+  // `;
+
   const param = [userId];
 
   db.query(sql, param)
@@ -117,7 +123,8 @@ app.get('/api/home/:projectId', (req, res, next) => {
   }
   const sql = `
     select "projectId",
-           "projectName"
+           "projectName",
+           "userId"
       from "project"
       where "projectId" = ($1)
   `;
@@ -149,6 +156,35 @@ app.get('/api/projects/titles/:projectId', (req, res, next) => {
       res.json(result.rows[0]);
     })
     .catch(err => next(err));
+});
+
+app.post('/api/projects/create', (req, res, next) => {
+  const { userId } = req.user;
+  const asssignedTo = req.user.userId;
+
+  const { projectName } = req.body;
+  if (!projectName) {
+    throw new ClientError(400, 'project name required');
+  }
+
+  if (Number(asssignedTo) !== Number(userId)) {
+    throw new ClientError(400, 'UserId and assignedTo must match');
+  }
+
+  const sql = `
+    insert into "project" ("projectId", "projectName")
+    values (default, ($1))
+    returning "projectId", "projectName"
+  `;
+
+  const param = [projectName];
+
+  db.query(sql, param)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+
 });
 
 app.get('/api/projects/:projectId', (req, res, next) => {
