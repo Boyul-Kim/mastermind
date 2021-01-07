@@ -86,7 +86,9 @@ export default class App extends React.Component {
 
       <AppContext.Provider value={contextValue}>
         <nav className="navbar navbar-expand-xl navbar-color navbar-height">
-          <i className="fas fa-bars white fa-2x"></i>
+          <a href="#home">
+            home
+          </a>
         </nav>
 
         {this.renderPage()}
