@@ -334,22 +334,31 @@ app.get('/api/users', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/task/search', (req, res, next) => {
-  const { taskName } = req.body;
+app.get('/api/task/search/:projectId/:taskName', (req, res, next) => {
+  let taskName = req.params.taskName;
+  const projectId = req.params.projectId;
   const { userId } = req.user;
-
+  taskName = taskName + '%';
   const sql = `
-    select *
+    select "taskId",
+        "taskName",
+        "username",
+        "dateCreated",
+        "deadline",
+        "description",
+        "userId"
     from "tasks"
+    join "users" using ("userId")
     where "taskName" LIKE ($1)
     AND "userId" = ($2)
+    AND "projectId" = ($3)
   `;
 
-  const params = [taskName, userId];
+  const params = [taskName, userId, projectId];
 
   db.query(sql, params)
     .then(result => {
-      res.status(200).json(result.rows);
+      res.json(result.rows);
     })
     .catch(err => next(err));
 
