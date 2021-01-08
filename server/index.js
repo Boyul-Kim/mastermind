@@ -334,6 +334,27 @@ app.get('/api/users', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/task/search', (req, res, next) => {
+  const { taskName } = req.body;
+  const { userId } = req.user;
+
+  const sql = `
+    select *
+    from "tasks"
+    where "taskName" LIKE ($1)
+    AND "userId" = ($2)
+  `;
+
+  const params = [taskName, userId];
+
+  db.query(sql, params)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
