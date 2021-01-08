@@ -110,30 +110,6 @@ app.get('/api/home/projects', (req, res, next) => {
     });
 });
 
-app.get('/api/home/:projectId', (req, res, next) => {
-  const projectId = Number(req.params.projectId);
-  if (!projectId) {
-    throw new ClientError(400, 'projectId must be a positive integer');
-  }
-  const sql = `
-    select "projectId",
-           "projectName",
-           "userId"
-      from "project"
-      where "projectId" = ($1)
-  `;
-
-  const param = [projectId];
-  db.query(sql, param)
-    .then(result => {
-      if (!result.rows[0]) {
-        throw new ClientError(404, `cannot find projectId ${projectId}`);
-      }
-      res.json(result.rows[0]);
-    })
-    .catch(err => next(err));
-});
-
 app.get('/api/projects/titles/:projectId', (req, res, next) => {
   const projectId = Number(req.params.projectId);
   const sql = `
@@ -153,16 +129,10 @@ app.get('/api/projects/titles/:projectId', (req, res, next) => {
 });
 
 app.post('/api/projects/create', (req, res, next) => {
-  const asssignedTo = req.user.userId;
-
   const { projectName } = req.body;
-  const userId = req.body.users[0].userId;
+
   if (!projectName) {
     throw new ClientError(400, 'project name required');
-  }
-
-  if (Number(asssignedTo) !== Number(userId)) {
-    throw new ClientError(400, 'UserId and assignedTo must match');
   }
 
   const sql = `
