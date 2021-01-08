@@ -5,6 +5,7 @@ import Task from './pages/task';
 import NewTask from './pages/newTask';
 import EditTask from './pages/editTask';
 import Project from './pages/project';
+import NewProject from './pages/newProject';
 import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
 import decodeToken from './lib/decode-token';
@@ -40,6 +41,10 @@ export default class App extends React.Component {
 
   renderPage() {
     const { path } = this.state.route;
+
+    if (path === 'newProject') {
+      return <NewProject />;
+    }
 
     if (path === 'editTask') {
       const taskId = this.state.route.params.get('taskId');
@@ -80,6 +85,12 @@ export default class App extends React.Component {
     return (
 
       <AppContext.Provider value={contextValue}>
+        <nav className="navbar navbar-expand-xl navbar-color navbar-height">
+          <a href="#home">
+            home
+          </a>
+        </nav>
+
         {this.renderPage()}
       </AppContext.Provider>
 
