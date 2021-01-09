@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './pages/login';
+import Signup from './pages/signUp';
 import Home from './pages/home';
 import Task from './pages/task';
 import NewTask from './pages/newTask';
@@ -70,6 +71,11 @@ export default class App extends React.Component {
     if (path === 'home') {
       return <Home />;
     }
+
+    if (path === 'signup') {
+      return <Signup />;
+    }
+
     if (path === '') {
       return <Login />;
     }
@@ -85,12 +91,6 @@ export default class App extends React.Component {
     return (
 
       <AppContext.Provider value={contextValue}>
-        <nav className="navbar navbar-expand-xl navbar-color navbar-height">
-          <a href="#home">
-            home
-          </a>
-        </nav>
-
         {this.renderPage()}
       </AppContext.Provider>
 

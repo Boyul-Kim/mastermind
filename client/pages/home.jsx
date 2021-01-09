@@ -22,6 +22,12 @@ export default class Home extends React.Component {
     return (
       <div>
 
+        <nav className="navbar navbar-expand-xl navbar-color navbar-height">
+          <a href="#home">
+            home
+          </a>
+        </nav>
+
         <div className="container-fluid mt-3">
           <h1 className="font-color">Projects</h1>
 
