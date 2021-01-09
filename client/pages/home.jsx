@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import Navbar from '../components/navbar';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -22,15 +23,9 @@ export default class Home extends React.Component {
     return (
       <div>
 
-        <nav className="navbar navbar-expand-xl navbar-color navbar-height">
-          <a href="#home">
-            home
-          </a>
-        </nav>
-
+        <Navbar />
         <div className="container-fluid mt-3">
           <h1 className="font-color">Projects</h1>
-
           <div>
             {
               this.state.projects.map(project => (

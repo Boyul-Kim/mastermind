@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../components/navbar';
 
 export default class Task extends React.Component {
 
@@ -18,29 +19,31 @@ export default class Task extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid mt-3">
-        <h2>View Task</h2>
+      <div>
+        <Navbar />
+        <div className="container-fluid mt-3">
+          <h2>View Task</h2>
 
-        <div className="mt-3">
+          <div className="mt-3">
             <h6>Task Name</h6>
 
-              <div className="view-task">
-                {this.state.task &&
-                  <div className="ml-2 mt-1">
-                    {this.state.task.taskName}
-                  </div>
-                }
-              </div>
+            <div className="view-task">
+              {this.state.task &&
+                <div className="ml-2 mt-1">
+                  {this.state.task.taskName}
+                </div>
+              }
+            </div>
 
             <h6 className="mt-2">Status Name</h6>
 
-              <div className="view-task mt-2">
-                {this.state.task &&
-                  <div className="ml-2 mt-1">
-                    {this.state.task.statusName}
-                  </div>
-                }
-              </div>
+            <div className="view-task mt-2">
+              {this.state.task &&
+                <div className="ml-2 mt-1">
+                  {this.state.task.statusName}
+                </div>
+              }
+            </div>
 
             <div className="d-flex flex-row mt-2">
               <h6 className="width-50">Date Created</h6>
@@ -56,11 +59,11 @@ export default class Task extends React.Component {
                 }
               </div>
               <div className="view-task width-50 mr-0 p-0">
-                  {this.state.task &&
-                    <div className="ml-2 mt-1">
-                      {this.state.task.deadline}
-                    </div>
-                  }
+                {this.state.task &&
+                  <div className="ml-2 mt-1">
+                    {this.state.task.deadline}
+                  </div>
+                }
               </div>
             </div>
 
@@ -82,12 +85,13 @@ export default class Task extends React.Component {
               }
             </div>
 
-          <a href={`#editTask?projectId=${this.props.projectId}&taskId=${this.props.taskId}`}>
-            <button type="submit" className="btn btn-danger mt-4 button-width">Edit</button>
-          </a>
+            <a href={`#editTask?projectId=${this.props.projectId}&taskId=${this.props.taskId}`}>
+              <button type="submit" className="btn btn-danger mt-4 button-width">Edit</button>
+            </a>
+
+          </div>
 
         </div>
-
       </div>
     );
   }

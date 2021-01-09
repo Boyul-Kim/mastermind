@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../components/navbar';
 
 export default class NewProject extends React.Component {
   constructor(props) {
@@ -49,18 +50,21 @@ export default class NewProject extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid mt-3">
-        <h2>Create Project</h2>
+      <div>
+        <Navbar />
+        <div className="container-fluid mt-3">
+          <h2>Create Project</h2>
 
-        <form className="mt-3" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <h6>Project Name</h6>
-            <input type="text" className="form-control" id="taskName" onChange={this.handleChange} name="projectName" />
-          </div>
+          <form className="mt-3" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <h6>Project Name</h6>
+              <input type="text" className="form-control" id="taskName" onChange={this.handleChange} name="projectName" />
+            </div>
 
-          <button type="submit" className="btn btn-danger mt-2">Submit</button>
+            <button type="submit" className="btn btn-danger mt-2">Submit</button>
 
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Stage from '../components/stage';
 import SearchTask from '../components/searchTask';
+import Navbar from '../components/navbar';
 
 export default class Project extends React.Component {
   constructor(props) {
@@ -52,36 +53,38 @@ export default class Project extends React.Component {
     const stageTitles = ['Current', 'For Review', 'Completed', 'Back Log'];
     if (this.state.search) {
       return (
-
-        <div className="container-fluid mt-3">
-          <div>
-            {this.state.project &&
-              <div>
-                <h2>{this.state.project.projectName}</h2>
-              </div>
-            }
-          </div>
-          <div>
-            <div className="card">
-              <div className="card-body">
-                <div className="row d-flex justify-content-between">
-                  <h4 className="ml-3">Search Result</h4>
-                  <button type="submit" className="btn btn-primary mb-2 mr-3" onClick={this.handleClear}>Clear</button>
+        <div>
+          <Navbar />
+          <div className="container-fluid mt-3">
+            <div>
+              {this.state.project &&
+                <div>
+                  <h2>{this.state.project.projectName}</h2>
                 </div>
+              }
+            </div>
+            <div>
+              <div className="card">
+                <div className="card-body">
+                  <div className="row d-flex justify-content-between">
+                    <h4 className="ml-3">Search Result</h4>
+                    <button type="submit" className="btn btn-primary mb-2 mr-3" onClick={this.handleClear}>Clear</button>
+                  </div>
 
-                <SearchTask tasks={this.state.searchTasks} />
+                  <SearchTask tasks={this.state.searchTasks} />
+                </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
       );
     }
     return (
       <div>
+        <Navbar />
         <div className="container-fluid mt-3">
-
           <div>
             {this.state.project &&
               <div>
