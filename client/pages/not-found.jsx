@@ -1,18 +1,19 @@
 import React from 'react';
 
-export default function NotFound(props) {
-  return (
-    <div>
-      <div className="row">
-        <div className="col text-center mb-5">
-          <h3>
-            Uh oh, we could not find the page you were looking for!
-          </h3>
-          <p className="text-muted">
-            <a href="#">Return Home</a>
-          </p>
+export default class NotFound extends React.Component {
+
+  render() {
+    return (
+      <div>
+        <div className="row">
+          <div className="col text-center mb-5">
+            <h3>
+              Sorry, we could not find the page you were looking for.
+            </h3>
+            <h6>Please press the brain icon to return home.</h6>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
