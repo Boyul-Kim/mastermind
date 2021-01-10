@@ -66,6 +66,7 @@ export default class EditTask extends React.Component {
 
   render() {
     return (
+
       <div className="container-fluid mt-3">
         <h2>Edit Task</h2>
 
@@ -99,14 +100,14 @@ export default class EditTask extends React.Component {
             <div className="width-50 mr-5 p-0">
               {this.state.dateCreated &&
                 <div className="mt-1">
-                <input type="text" className="form-control form-control-sm time-width" id="dateCreated" value={this.state.dateCreated} onChange={this.handleChange} name="dateCreated" />
+                  <input type="text" className="form-control form-control-sm time-width" id="dateCreated" value={this.state.dateCreated} onChange={this.handleChange} name="dateCreated" />
                 </div>
               }
             </div>
             <div className="width-50 mr-0 p-0">
               {this.state.deadline &&
                 <div className="mt-1">
-                <input type="text" className="form-control form-control-sm time-width" id="deadline" value={this.state.deadline} onChange={this.handleChange} name="deadline" />
+                  <input type="text" className="form-control form-control-sm time-width" id="deadline" value={this.state.deadline} onChange={this.handleChange} name="deadline" />
                 </div>
               }
             </div>
@@ -117,11 +118,11 @@ export default class EditTask extends React.Component {
             <div className="form-group">
               <select className="custom-select custom-select-sm" onChange={this.handleChange} name="userId">
                 <option value={this.state.userId}>{this.state.username}</option>
-              {
-                this.state.users.map(user => (
-                  <option key={user.userId} value={user.userId}>{user.username}</option>
-                ))
-              }
+                {
+                  this.state.users.map(user => (
+                    <option key={user.userId} value={user.userId}>{user.username}</option>
+                  ))
+                }
               </select>
             </div>
           }
@@ -129,7 +130,7 @@ export default class EditTask extends React.Component {
           <h6>Description</h6>
           {this.state.description &&
             <div className="form-group">
-            <textarea className="form-control" name="description" id="description" value={this.state.description} cols="30" rows="5" onChange={this.handleChange} ></textarea>
+              <textarea className="form-control" name="description" id="description" value={this.state.description} cols="30" rows="5" onChange={this.handleChange} ></textarea>
             </div>
           }
 
@@ -137,6 +138,7 @@ export default class EditTask extends React.Component {
 
         </form>
       </div>
+
     );
   }
 }

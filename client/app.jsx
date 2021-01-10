@@ -1,14 +1,17 @@
 import React from 'react';
 import Login from './pages/login';
+import Signup from './pages/signUp';
 import Home from './pages/home';
 import Task from './pages/task';
 import NewTask from './pages/newTask';
 import EditTask from './pages/editTask';
 import Project from './pages/project';
+import NotFound from './pages/not-found';
 import NewProject from './pages/newProject';
 import AppContext from './lib/app-context';
 import parseRoute from './lib/parse-route';
 import decodeToken from './lib/decode-token';
+import Navbar from './components/navbar';
 
 export default class App extends React.Component {
 
@@ -20,6 +23,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash)
     };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +35,11 @@ export default class App extends React.Component {
     const token = window.localStorage.getItem('user-jwt');
     const user = token ? decodeToken(token) : null;
     this.setState({ user, isAuthorizing: false });
+  }
+
+  handleLogout() {
+    window.localStorage.removeItem('user-jwt');
+    this.setState({ user: null });
   }
 
   handleLogin(result) {
@@ -70,28 +79,40 @@ export default class App extends React.Component {
     if (path === 'home') {
       return <Home />;
     }
+
     if (path === '') {
       return <Login />;
     }
-    return <Login />;
+
+    return <NotFound />;
   }
 
   render() {
     if (this.state.isAuthorizing) return null;
     const { user, route } = this.state;
-    const { handleLogin } = this;
-    const contextValue = { user, route, handleLogin };
+    const { handleLogin, handleLogout } = this;
+    const contextValue = { user, route, handleLogin, handleLogout };
+
+    if (user !== null) {
+      return (
+
+        <AppContext.Provider value={contextValue}>
+          <Navbar />
+            {this.renderPage()}
+        </AppContext.Provider>
+
+      );
+    }
+
+    const { path } = this.state.route;
+    if (path === 'signup') {
+      return <Signup />;
+    }
 
     return (
 
       <AppContext.Provider value={contextValue}>
-        <nav className="navbar navbar-expand-xl navbar-color navbar-height">
-          <a href="#home">
-            home
-          </a>
-        </nav>
-
-        {this.renderPage()}
+        <Login />
       </AppContext.Provider>
 
     );

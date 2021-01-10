@@ -17,7 +17,11 @@
 }
 
 .navbar-height {
-  height: 3rem;
+  height: 4rem;
+}
+
+.menu {
+  border: none;
 }
 
 .container-child {
@@ -78,4 +82,11 @@
 
 .button-width {
   width: 25%;
+}
+
+.sidebar-brain {
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
 }

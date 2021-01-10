@@ -74,7 +74,7 @@ export default class NewTask extends React.Component {
               <input type="text" className="form-control form-control-sm time-width mr-4" id="dateCreated" placeholder="Date Created" onChange={this.handleChange} name="dateCreated" />
             </div>
             <div>
-              <input type="text" className="form-control form-control-sm time-width ml-4" id="deadline" placeholder="Deadline" onChange={this.handleChange} name="deadline"/>
+              <input type="text" className="form-control form-control-sm time-width ml-4" id="deadline" placeholder="Deadline" onChange={this.handleChange} name="deadline" />
             </div>
           </div>
 
