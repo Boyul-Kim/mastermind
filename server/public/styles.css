@@ -20,6 +20,10 @@
   height: 4rem;
 }
 
+.menu {
+  border: none;
+}
+
 .container-child {
   height: 100%;
   width: 100%;

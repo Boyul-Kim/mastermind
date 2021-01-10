@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/navbar';
 
 export default class NewProject extends React.Component {
   constructor(props) {
@@ -51,7 +50,6 @@ export default class NewProject extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
         <div className="container-fluid mt-3">
           <h2>Create Project</h2>
 

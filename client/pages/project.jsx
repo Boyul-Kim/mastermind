@@ -1,7 +1,6 @@
 import React from 'react';
 import Stage from '../components/stage';
 import SearchTask from '../components/searchTask';
-import Navbar from '../components/navbar';
 
 export default class Project extends React.Component {
   constructor(props) {
@@ -54,7 +53,6 @@ export default class Project extends React.Component {
     if (this.state.search) {
       return (
         <div>
-          <Navbar />
           <div className="container-fluid mt-3">
             <div>
               {this.state.project &&
@@ -83,7 +81,6 @@ export default class Project extends React.Component {
     }
     return (
       <div>
-        <Navbar />
         <div className="container-fluid mt-3">
           <div>
             {this.state.project &&

@@ -1,6 +1,5 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
-import Navbar from '../components/navbar';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -22,8 +21,6 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-
-        <Navbar />
         <div className="container-fluid mt-3">
           <h1 className="font-color">Projects</h1>
           <div>

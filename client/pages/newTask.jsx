@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/navbar';
 
 export default class NewTask extends React.Component {
   constructor(props) {
@@ -53,7 +52,6 @@ export default class NewTask extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
         <div className="container-fluid mt-3">
           <h2>Create Task</h2>
 
