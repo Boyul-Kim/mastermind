@@ -80,10 +80,6 @@ export default class App extends React.Component {
       return <Home />;
     }
 
-    if (path === 'signup') {
-      return <Signup />;
-    }
-
     if (path === '') {
       return <Login />;
     }
@@ -108,6 +104,11 @@ export default class App extends React.Component {
         </AppContext.Provider>
 
       );
+    }
+
+    const { path } = this.state.route;
+    if (path === 'signup') {
+      return <Signup />;
     }
 
     return (
