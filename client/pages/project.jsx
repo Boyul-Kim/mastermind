@@ -80,32 +80,30 @@ export default class Project extends React.Component {
       );
     }
     return (
-      <div>
-        <div className="container-fluid mt-3">
-          <div>
-            {this.state.project &&
-              <div>
-                <h2>{this.state.project.projectName}</h2>
-              </div>
-            }
-          </div>
-
-          <form onSubmit={this.handleSearch}>
-            <div className="form-row mb-2">
-              <div className="col-10">
-                <input type="text" className="form-control" name="taskName" placeholder="Search task" onChange={this.handleChange} />
-              </div>
-              <button type="submit" className="btn btn-primary mb-2">Go!</button>
+      <div className="container-fluid mt-3">
+        <div>
+          {this.state.project &&
+            <div>
+              <h2>{this.state.project.projectName}</h2>
             </div>
-          </form>
+          }
+        </div>
 
-          <div className="status-scroll">
-            {
-              this.state.tasks.map((stage, index) => {
-                return <Stage key={stage.taskId} title={stageTitles[index]} tasks={stage} projectId={this.props.projectId}/>;
-              })
-            }
+        <form onSubmit={this.handleSearch}>
+          <div className="form-row mb-2">
+            <div className="col-10">
+              <input type="text" className="form-control" name="taskName" placeholder="Search task" onChange={this.handleChange} />
+            </div>
+            <button type="submit" className="btn btn-primary mb-2">Go!</button>
           </div>
+        </form>
+
+        <div className="status-scroll">
+          {
+            this.state.tasks.map((stage, index) => {
+              return <Stage key={stage.taskId} title={stageTitles[index]} tasks={stage} projectId={this.props.projectId}/>;
+            })
+          }
         </div>
       </div>
     );

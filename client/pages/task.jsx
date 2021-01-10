@@ -18,7 +18,6 @@ export default class Task extends React.Component {
 
   render() {
     return (
-      <div>
         <div className="container-fluid mt-3">
           <h2>View Task</h2>
 
@@ -90,7 +89,6 @@ export default class Task extends React.Component {
           </div>
 
         </div>
-      </div>
     );
   }
 }
