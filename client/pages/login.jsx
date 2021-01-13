@@ -6,10 +6,9 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      username: 'demoUser',
+      password: 'test123'
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -47,8 +46,8 @@ export default class Login extends React.Component {
           <div className="ml-4">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <input type="text" className="form-control mb-3" id="username" name="username" placeholder="Username" />
-                <input type="password" className="form-control mb-3" id="password" name="password" placeholder="Password" />
+                <input type="text" className="form-control mb-3" id="username" name="username" defaultValue="demoUser" />
+                <input type="password" className="form-control mb-3" id="password" name="password" defaultValue="test123" />
                 <button type="submit" className="btn btn-danger input-length">Log in</button>
               </div>
             </form>
