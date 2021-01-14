@@ -6,16 +6,10 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      username: 'demoUser',
+      password: 'test123'
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
   }
 
   handleSubmit(event) {
@@ -52,14 +46,13 @@ export default class Login extends React.Component {
           <div className="ml-4">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <input type="text" className="form-control mb-3" id="username" name="username" placeholder="Username" onChange={this.handleChange} />
-                <input type="password" className="form-control mb-3" id="password" name="password" placeholder="Password" onChange={this.handleChange} />
-                <button type="submit" className="btn btn-danger input-length">Log in</button>
+                <label htmlFor="username" className="white">Username</label>
+                <input type="text" className="form-control mb-3" id="username" name="username" defaultValue="demoUser" disabled />
+                <label htmlFor="password" className="white">Password</label>
+                <input type="password" className="form-control mb-3" id="password" name="password" defaultValue="test123" disabled />
+                <button type="submit" className="btn btn-danger input-length mt-3">Log in</button>
               </div>
             </form>
-            <div>
-              <a href="#signup" className="d-flex justify-content-center white">Sign up</a>
-            </div>
           </div>
 
         </div>
