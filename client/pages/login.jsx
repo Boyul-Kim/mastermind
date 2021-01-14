@@ -47,9 +47,9 @@ export default class Login extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label htmlFor="username" className="white">Username</label>
-                <input type="text" className="form-control mb-3" id="username" name="username" defaultValue="demoUser" />
+                <input type="text" className="form-control mb-3" id="username" name="username" defaultValue="demoUser" disabled />
                 <label htmlFor="password" className="white">Password</label>
-                <input type="password" className="form-control mb-3" id="password" name="password" defaultValue="test123" />
+                <input type="password" className="form-control mb-3" id="password" name="password" defaultValue="test123" disabled />
                 <button type="submit" className="btn btn-danger input-length mt-3">Log in</button>
               </div>
             </form>
