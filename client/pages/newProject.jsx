@@ -49,7 +49,7 @@ export default class NewProject extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid mt-3">
+      <div className="container mt-3">
         <h2>Create Project</h2>
 
         <form className="mt-3" onSubmit={this.handleSubmit}>

@@ -24,7 +24,7 @@ export default class Stage extends React.Component {
                         <h5>{task.taskName}</h5>
                         <h6>{task.username}</h6>
                         <div className="row d-flex justify-content-between">
-                          <h6 className="ml-3">{task.dateCreated}</h6>
+                          <h6 className="ml-3">{task.deadline}</h6>
                         </div>
                       </div>
                     </a>

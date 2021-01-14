@@ -169,7 +169,8 @@ app.get('/api/projects/:projectId', (req, res, next) => {
         "statusName",
         "taskName",
         "username",
-        "dateCreated"
+        "dateCreated",
+        "deadline"
     from "tasks"
     join "project" using ("projectId")
     join "statuses" using ("statusId")

@@ -9,7 +9,7 @@ export default class Navbar extends React.Component {
     const { handleLogout } = this.context;
     return (
       <div>
-        <nav className="navbar navbar-expand-xl navbar-color navbar-height d-flex justify-content-around">
+        <nav className="navbar navbar-color navbar-height d-flex ">
           <a href="#home">
             <i className="fas fa-brain white fa-2x"></i>
           </a>

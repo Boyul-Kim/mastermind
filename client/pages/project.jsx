@@ -80,7 +80,7 @@ export default class Project extends React.Component {
       );
     }
     return (
-      <div className="container-fluid mt-3">
+      <div className="container mt-3">
         <div>
           {this.state.project &&
             <div>

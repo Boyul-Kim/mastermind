@@ -90,3 +90,47 @@
   top: 0;
   left: 0;
 }
+
+.form-data-width {
+  width: 100%;
+}
+
+.description-input-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .input-width {
+    width: 50%;
+  }
+
+  .form-data-width {
+    width: 285px;
+  }
+
+  .form-width {
+    width: 600px;
+  }
+
+  .description-input-width {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .input-width {
+    width: 50%;
+  }
+
+  .form-data-width {
+    width: 285px;
+  }
+
+  .description-input-width {
+    width: 100%;
+  }
+
+  .form-width {
+    width: 600px;
+  }
+}
