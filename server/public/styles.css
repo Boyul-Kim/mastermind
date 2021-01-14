@@ -1,7 +1,7 @@
 .background-color {
   background-color: rgb(5, 56, 107);
   height: 100vh;
-  margin: 0;
+  width: 100vw;
 }
 
 .navbar-color {
