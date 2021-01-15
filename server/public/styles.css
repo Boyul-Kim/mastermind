@@ -84,10 +84,6 @@
   width: 25%;
 }
 
-.relative {
-  position: relative;
-}
-
 .sidebar {
   background-color: rgb(5, 56, 107);
   z-index: 1;

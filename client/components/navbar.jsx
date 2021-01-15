@@ -19,7 +19,7 @@ export default class Navbar extends React.Component {
     if (this.state.sidebar) {
       return (
         <div>
-          <nav className="navbar navbar-color navbar-height d-flex .relative ">
+          <nav className="navbar navbar-color navbar-height d-flex position-relative ">
             <div className="sidebar-nav-on">
               <div className="row justify-content-end mt-3 mr-2">
                 <i className="fas fa-times white" onClick={this.handleNav}></i>
@@ -48,7 +48,7 @@ export default class Navbar extends React.Component {
     }
     return (
       <div>
-        <nav className="navbar navbar-color navbar-height d-flex .relative ">
+        <nav className="navbar navbar-color navbar-height d-flex position-relative ">
           <div className="sidebar"></div>
           <i className="fas fa-bars white fa-2x" onClick={this.handleNav}></i>
         </nav>
