@@ -1,6 +1,4 @@
 import React from 'react';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import AppContext from '../lib/app-context';
 
 export default class Navbar extends React.Component {
@@ -23,20 +21,26 @@ export default class Navbar extends React.Component {
         <div>
           <nav className="navbar navbar-color navbar-height d-flex .relative ">
             <div className="sidebar-nav-on">
-              <div className="white">test</div>
+              <div className="row justify-content-end mt-3 mr-2">
+                <i className="fas fa-times white" onClick={this.handleNav}></i>
+              </div>
+              <div className="mr-2">
+                <ul>
+                  <li>
+                    <a href="#home" onClick={this.handleNav} className="white">Home</a>
+                  </li>
+                  <li className="mt-2">
+                    <a href="#newProject" className="white" onClick={this.handleNav}>Create Project</a>
+                  </li>
+                  <li className="mt-2">
+                    <a href="" onClick={handleLogout} className="white">Logout</a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <i className="fas fa-bars white fa-2x" onClick={this.handleNav}></i>
 
-            <div className="navbar-color">
-              <DropdownButton id="dropdown-basic-button" bsPrefix="navbar-color white menu" variant="secondary" title="Menu">
-                <Dropdown.Item href="#newProject">Create Project</Dropdown.Item>
-              </DropdownButton>
-            </div>
-
-            <a href="">
-              <i className="fas fa-sign-out-alt fa-2x white" onClick={handleLogout}></i>
-            </a>
           </nav>
         </div>
 
@@ -47,16 +51,6 @@ export default class Navbar extends React.Component {
         <nav className="navbar navbar-color navbar-height d-flex .relative ">
           <div className="sidebar"></div>
           <i className="fas fa-bars white fa-2x" onClick={this.handleNav}></i>
-
-          <div className="navbar-color">
-            <DropdownButton id="dropdown-basic-button" bsPrefix="navbar-color white menu" variant="secondary" title="Menu">
-              <Dropdown.Item href="#newProject">Create Project</Dropdown.Item>
-            </DropdownButton>
-          </div>
-
-          <a href="">
-            <i className="fas fa-sign-out-alt fa-2x white" onClick={handleLogout}></i>
-          </a>
         </nav>
       </div>
 

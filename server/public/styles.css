@@ -88,29 +88,28 @@
   position: relative;
 }
 
-.sidebar-nav-on {
-  background-color: rgb(5, 56, 107);
-  z-index: 1;
-  position: absolute;
-  width: 200px;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  transition: transform 0.5s ease;
-  transform: scale(1.5);
-}
-
 .sidebar {
   background-color: rgb(5, 56, 107);
   z-index: 1;
   position: absolute;
-  width: 200px;
+  width: 175px;
   height: 100vh;
   top: 0;
-  left: -200px;
+  left: -175px;
   transform: scale(1);
+  transition: all 0.5s ease;
+}
 
-  /* transition: transform 0.15s ease; */
+.sidebar-nav-on {
+  background-color: rgb(5, 56, 107);
+  z-index: 1;
+  position: absolute;
+  width: 175px;
+  height: 100vh;
+  top: 70px;
+  left: 20px;
+  transition: all 0.5s ease;
+  transform: scale(1.25);
 }
 
 .form-data-width {
@@ -135,6 +134,10 @@
 
 .stage-width {
   width: 350px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 @media screen and (min-width: 600px) {
