@@ -10,7 +10,7 @@ export default class Stage extends React.Component {
             <div className="row">
               <h3 className="col">{this.props.title}</h3>
               <a href={`#newTask?projectId=${this.props.projectId}`}>
-                <i className="fas fa-plus fa-2x col text-right"></i>
+                <i className="fas fa-plus fa-2x col text-right homepage-font"></i>
               </a>
 
             </div>

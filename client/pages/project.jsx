@@ -54,19 +54,12 @@ export default class Project extends React.Component {
       return (
         <div>
           <div className="container-fluid mt-3">
-            <div>
-              {this.state.project &&
-                <div>
-                  <h2>{this.state.project.projectName}</h2>
-                </div>
-              }
-            </div>
-            <div>
-              <div className="card">
+            <div className="row justify-content-center">
+              <div className="card search-width">
                 <div className="card-body">
                   <div className="row d-flex justify-content-between">
                     <h4 className="ml-3">Search Result</h4>
-                    <button type="submit" className="btn btn-primary mb-2 mr-3" onClick={this.handleClear}>Clear</button>
+                    <button type="submit" className="btn btn-primary mb-2 mr-3 navbar-color" onClick={this.handleClear}>Clear</button>
                   </div>
 
                   <SearchTask tasks={this.state.searchTasks} />
@@ -91,10 +84,10 @@ export default class Project extends React.Component {
 
         <form onSubmit={this.handleSearch}>
           <div className="form-row mb-2">
-            <div className="col-10">
+            <div className="ml-1 search-task-width">
               <input type="text" className="form-control" name="taskName" placeholder="Search task" onChange={this.handleChange} />
             </div>
-            <button type="submit" className="btn btn-primary mb-2">Go!</button>
+            <button type="submit" className="btn btn-primary mb-2 navbar-color">Search</button>
           </div>
         </form>
 

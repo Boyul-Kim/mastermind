@@ -49,18 +49,19 @@ export default class NewProject extends React.Component {
 
   render() {
     return (
-      <div className="container mt-3">
-        <h2>Create Project</h2>
+      <div className="container mt-3 home-view-width">
+        <div className="row justify-content-center">
+          <form className="form-data-width" onSubmit={this.handleSubmit}>
+            <h2>Create Project</h2>
+            <div className="form-group">
+              <h6>Project Name</h6>
+              <input type="text" className="form-control-sm form-control" id="taskName" onChange={this.handleChange} name="projectName" />
+            </div>
+            <button type="submit" className="btn btn-success mt-2">Submit</button>
 
-        <form className="mt-3" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <h6>Project Name</h6>
-            <input type="text" className="form-control" id="taskName" onChange={this.handleChange} name="projectName" />
-          </div>
+          </form>
+        </div>
 
-          <button type="submit" className="btn btn-danger mt-2">Submit</button>
-
-        </form>
       </div>
     );
   }

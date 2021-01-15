@@ -99,6 +99,10 @@
   width: 100%;
 }
 
+.search-task-width {
+  width: 75%;
+}
+
 @media screen and (min-width: 600px) {
   .input-width {
     width: 50%;
@@ -114,6 +118,18 @@
 
   .description-input-width {
     width: 100%;
+  }
+
+  .home-view-width {
+    width: 75%;
+  }
+
+  .search-bar-width {
+    width: 400px;
+  }
+
+  .search-task-width {
+    width: 85%;
   }
 }
 
@@ -132,5 +148,17 @@
 
   .form-width {
     width: 600px;
+  }
+
+  .home-view-width {
+    width: 70%;
+  }
+
+  .search-width {
+    width: 400px;
+  }
+
+  .search-task-width {
+    width: 93%;
   }
 }
