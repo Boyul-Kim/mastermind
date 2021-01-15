@@ -4,7 +4,7 @@ export default class Stage extends React.Component {
 
   render() {
     return (
-      <div className="d-inline-block">
+      <div className="d-inline-block stage-width">
         <div className="card mr-4">
           <div className="card-body">
             <div className="row">

@@ -19,7 +19,7 @@ export default class Task extends React.Component {
   render() {
     return (
 
-      <div className="container mt-3">
+      <div className="container mt-3 ml-1">
         <div className="row justify-content-center">
           <div className="form-width p-2">
             <h2>Task</h2>
@@ -28,7 +28,7 @@ export default class Task extends React.Component {
                 <h6>Task Name</h6>
                 {this.state.task &&
                   <div className="form-group">
-                    <input type="text" className="form-control-sm form-control" id="taskName" value={this.state.task.taskName} name="taskName" readOnly />
+                    <input type="text" className="form-control-sm form-control task-input-width" id="taskName" value={this.state.task.taskName} name="taskName" readOnly />
                   </div>
                 }
               </div>
@@ -37,7 +37,7 @@ export default class Task extends React.Component {
                 <h6>Status Name</h6>
                 {this.state.task &&
                   <div className="form-group">
-                  <select className="custom-select custom-select-sm" name="statusId" disabled>
+                  <select className="custom-select custom-select-sm task-input-width" name="statusId" disabled>
                       <option value={this.state.task.statusId}>{this.state.task.statusName}</option>
                       <option value="1">Current Task</option>
                       <option value="2">For Review</option>
@@ -52,7 +52,7 @@ export default class Task extends React.Component {
                 <h6>Deadline</h6>
                 {this.state.task &&
                   <div className="form-group">
-                  <input type="text" disabled className="form-control-sm form-control" id="deadline" value={this.state.task.deadline} name="deadline" />
+                  <input type="text" disabled className="form-control-sm form-control task-input-width" id="deadline" value={this.state.task.deadline} name="deadline" />
                   </div>
                 }
               </div>
@@ -61,13 +61,8 @@ export default class Task extends React.Component {
                 <h6>Username</h6>
                 {this.state.task &&
                   <div className="form-group">
-                    <select className="custom-select custom-select-sm" name="userId" disabled>
+                  <select className="custom-select custom-select-sm task-input-width" name="userId" disabled>
                     <option value={this.state.task.userId}>{this.state.task.username}</option>
-                        {/* {this.state.task &&
-                          <div className="ml-2 mt-1">
-                            {this.state.task.deadline}
-                          </div>
-                        } */}
                     </select>
                   </div>
                 }
@@ -77,7 +72,7 @@ export default class Task extends React.Component {
                 <h6>Description</h6>
                 {this.state.task &&
                   <div className="form-group">
-                  <textarea className="form-control" disabled name="description" id="description" value={this.state.task.description} cols="30" rows="5" ></textarea>
+                  <textarea className="form-control task-input-description-width" disabled name="description" id="description" value={this.state.task.description} cols="30" rows="5" ></textarea>
                   </div>
                 }
 

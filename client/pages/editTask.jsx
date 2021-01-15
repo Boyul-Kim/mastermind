@@ -67,7 +67,7 @@ export default class EditTask extends React.Component {
   render() {
     return (
 
-      <div className="container mt-3">
+      <div className="container mt-3 ml-1">
         <div className="row justify-content-center">
           <form onSubmit={this.handleSubmit} className="form-width p-2">
             <h2>Edit Task</h2>
@@ -76,7 +76,7 @@ export default class EditTask extends React.Component {
                 <h6>Task Name</h6>
                 {this.state.taskName &&
                   <div className="form-group">
-                    <input type="text" className="form-control-sm form-control" id="taskName" value={this.state.taskName} onChange={this.handleChange} name="taskName" />
+                  <input type="text" className="form-control-sm form-control task-input-width" id="taskName" value={this.state.taskName} onChange={this.handleChange} name="taskName" />
                   </div>
                 }
               </div>
@@ -85,7 +85,7 @@ export default class EditTask extends React.Component {
                 <h6>Status Name</h6>
                 {this.state.statusName &&
                   <div className="form-group">
-                    <select className="custom-select custom-select-sm" onChange={this.handleChange} name="statusId">
+                  <select className="custom-select custom-select-sm task-input-width" onChange={this.handleChange} name="statusId">
                       <option value={this.state.statusId}>{this.state.statusName}</option>
                       <option value="1">Current Task</option>
                       <option value="2">For Review</option>
@@ -100,7 +100,7 @@ export default class EditTask extends React.Component {
                 <h6>Deadline</h6>
                 {this.state.deadline &&
                   <div className="form-group">
-                    <input type="text" className="form-control-sm form-control" id="deadline" value={this.state.deadline} onChange={this.handleChange} name="deadline" />
+                  <input type="text" className="form-control-sm form-control task-input-width" id="deadline" value={this.state.deadline} onChange={this.handleChange} name="deadline" />
                   </div>
                 }
               </div>
@@ -109,7 +109,7 @@ export default class EditTask extends React.Component {
                 <h6>Username</h6>
                 {this.state.username &&
                   <div className="form-group">
-                    <select className="custom-select custom-select-sm" onChange={this.handleChange} name="userId">
+                  <select className="custom-select custom-select-sm task-input-width" onChange={this.handleChange} name="userId">
                       <option value={this.state.userId}>{this.state.username}</option>
                       {
                         this.state.users.map(user => (
@@ -125,7 +125,7 @@ export default class EditTask extends React.Component {
                 <h6>Description</h6>
                 {this.state.description &&
                   <div className="form-group">
-                    <textarea className="form-control" name="description" id="description" value={this.state.description} cols="30" rows="5" onChange={this.handleChange} ></textarea>
+                  <textarea className="form-control task-input-description-width" name="description" id="description" value={this.state.description} cols="30" rows="5" onChange={this.handleChange} ></textarea>
                   </div>
                 }
 

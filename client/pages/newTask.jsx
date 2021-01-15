@@ -52,15 +52,15 @@ export default class NewTask extends React.Component {
   render() {
     return (
 
-      <div className="container mt-3">
+      <div className="container mt-3 ml-1">
         <div className="row justify-content-center">
           <form onSubmit={this.handleSubmit} className="form-width p-2">
-            <h2>Edit Task</h2>
+            <h2>Create Task</h2>
             <div className="d-flex flex-wrap">
               <div className="form-data-width mr-2">
                 <h6>Task Name</h6>
                 <div className="form-group">
-                  <input type="text" className="form-control-sm form-control" id="taskName" placeholder="Task Name" onChange={this.handleChange} name="taskName" />
+                  <input type="text" className="form-control-sm form-control task-input-width" id="taskName" placeholder="Task Name" onChange={this.handleChange} name="taskName" />
                 </div>
               </div>
 
@@ -68,7 +68,7 @@ export default class NewTask extends React.Component {
                 <h6>Status Name</h6>
 
                 <div className="form-group">
-                  <select className="custom-select custom-select-sm" onChange={this.handleChange} name="statusId">
+                  <select className="custom-select custom-select-sm task-input-width" onChange={this.handleChange} name="statusId">
                     <option defaultValue>Status</option>
                     <option value="1">Current Task</option>
                     <option value="2">For Review</option>
@@ -83,7 +83,7 @@ export default class NewTask extends React.Component {
                 <h6>Deadline</h6>
 
                 <div className="form-group">
-                  <input type="text" className="form-control-sm form-control" id="deadline" placeholder="Deadline" onChange={this.handleChange} name="deadline" />
+                  <input type="text" className="form-control-sm form-control task-input-width" id="deadline" placeholder="Deadline" onChange={this.handleChange} name="deadline" />
                 </div>
 
               </div>
@@ -92,7 +92,7 @@ export default class NewTask extends React.Component {
                 <h6>Username</h6>
 
                   <div className="form-group">
-                    <select className="custom-select custom-select-sm" onChange={this.handleChange} name="userId">
+                  <select className="custom-select custom-select-sm task-input-width" onChange={this.handleChange} name="userId">
                     <option defaultValue>User assigned</option>
                       {
                         this.state.users.map(user => (
@@ -108,7 +108,7 @@ export default class NewTask extends React.Component {
                 <h6>Description</h6>
 
                   <div className="form-group">
-                    <textarea className="form-control" name="description" id="description" value={this.state.description} cols="30" rows="5" onChange={this.handleChange} ></textarea>
+                  <textarea className="form-control task-input-description-width" name="description" id="description" value={this.state.description} cols="30" rows="5" onChange={this.handleChange} ></textarea>
                   </div>
 
                 <button type="submit" className="btn btn-success mt-2">Submit</button>
