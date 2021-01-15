@@ -39,23 +39,27 @@ export default class Login extends React.Component {
 
     return (
       <div className='container-fluid background-color'>
-        <div className='row d-flex justify-content-center align-items-center container-child'>
-          <h1 className="ml-4 white">Mastermind</h1>
-          <i className="ml-4 fas fa-brain brain-white"></i>
 
-          <div className="ml-4">
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="username" className="white">Username</label>
-                <input type="text" className="form-control mb-3" id="username" name="username" defaultValue="demoUser" disabled />
-                <label htmlFor="password" className="white">Password</label>
-                <input type="password" className="form-control mb-3" id="password" name="password" defaultValue="test123" disabled />
-                <button type="submit" className="btn btn-danger input-length mt-3">Log in</button>
-              </div>
-            </form>
+        <div className="row justify-content-center h-100 align-items-center">
+          <div>
+            <h1 className="col white">Mastermind</h1>
+            <i className="fas fa-brain brain-white col mt-3"></i>
+
+            <div className="col">
+              <form onSubmit={this.handleSubmit}>
+                <div className="form-group mt-3">
+                  <label htmlFor="username" className="white">Username</label>
+                  <input type="text" className="form-control mb-3 input-length" id="username" name="username" defaultValue="demoUser" disabled />
+                  <label htmlFor="password" className="white">Password</label>
+                  <input type="password" className="form-control input-length mb-3" id="password" name="password" defaultValue="test123" disabled />
+                  <button type="submit" className="btn btn-danger input-length mt-3">Log in</button>
+                </div>
+              </form>
+            </div>
           </div>
 
         </div>
+
       </div>
 
     );

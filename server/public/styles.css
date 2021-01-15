@@ -1,7 +1,7 @@
 .background-color {
   background-color: rgb(5, 56, 107);
   height: 100vh;
-  margin: 0;
+  width: 100vw;
 }
 
 .navbar-color {
@@ -89,4 +89,100 @@
   height: 20px;
   top: 0;
   left: 0;
+}
+
+.form-data-width {
+  width: 100%;
+}
+
+.description-input-width {
+  width: 100%;
+}
+
+.search-task-width {
+  width: 75%;
+}
+
+.task-input-width {
+  width: 360px;
+}
+
+.task-input-description-width {
+  width: 360px;
+}
+
+.stage-width {
+  width: 350px;
+}
+
+@media screen and (min-width: 600px) {
+  .input-width {
+    width: 50%;
+  }
+
+  .form-data-width {
+    width: 285px;
+  }
+
+  .form-width {
+    width: 600px;
+  }
+
+  .description-input-width {
+    width: 100%;
+  }
+
+  .home-view-width {
+    width: 75%;
+  }
+
+  .search-bar-width {
+    width: 400px;
+  }
+
+  .search-task-width {
+    width: 85%;
+  }
+
+  .task-input-width {
+    width: 290px;
+  }
+
+  .task-input-description-width {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .input-width {
+    width: 50%;
+  }
+
+  .form-data-width {
+    width: 285px;
+  }
+
+  .description-input-width {
+    width: 100%;
+  }
+
+  .form-width {
+    width: 600px;
+  }
+
+  .home-view-width {
+    width: 70%;
+  }
+
+  .search-width {
+    width: 400px;
+  }
+
+  .search-task-width {
+    width: 93%;
+  }
+
+  .task-input-description-width {
+    width: 100%;
+  }
 }

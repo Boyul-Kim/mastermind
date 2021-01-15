@@ -20,7 +20,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid mt-3">
+      <div className="container mt-3 home-view-width">
         <h1 className="font-color">Projects</h1>
         <div>
           {
