@@ -19,7 +19,7 @@ export default class Task extends React.Component {
   render() {
     return (
 
-      <div className="container mt-3 ml-1">
+      <div className="container mt-3">
         <div className="row justify-content-center">
           <div className="form-width p-2">
             <h2>Task</h2>

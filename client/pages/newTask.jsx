@@ -52,7 +52,7 @@ export default class NewTask extends React.Component {
   render() {
     return (
 
-      <div className="container mt-3 ml-1">
+      <div className="container mt-3">
         <div className="row justify-content-center">
           <form onSubmit={this.handleSubmit} className="form-width p-2">
             <h2>Create Task</h2>

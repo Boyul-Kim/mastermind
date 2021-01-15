@@ -52,12 +52,14 @@ export default class NewProject extends React.Component {
       <div className="container mt-3 home-view-width">
         <div className="row justify-content-center">
           <form className="form-data-width" onSubmit={this.handleSubmit}>
-            <h2>Create Project</h2>
-            <div className="form-group">
-              <h6>Project Name</h6>
-              <input type="text" className="form-control-sm form-control" id="taskName" onChange={this.handleChange} name="projectName" />
+            <div className="ml-2">
+              <h2>Create Project</h2>
+              <div className="form-group">
+                <h6>Project Name</h6>
+                <input type="text" className="form-control-sm form-control task-input-width" id="taskName" onChange={this.handleChange} name="projectName" />
+              </div>
+              <button type="submit" className="btn btn-success mt-2">Submit</button>
             </div>
-            <button type="submit" className="btn btn-success mt-2">Submit</button>
 
           </form>
         </div>
