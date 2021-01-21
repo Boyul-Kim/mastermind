@@ -278,20 +278,18 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
 
 });
 
-app.put('/api/tasks/delete/:projectId/:taskId', (req, res, next) => {
-  const projectId = Number(req.params.projectId);
+app.put('/api/tasks/delete/:taskId', (req, res, next) => {
   const taskId = Number(req.params.taskId);
-  if (!projectId || !taskId) {
+  if (!taskId) {
     throw new ClientError(400, 'Project Id and Task Id must be a positive integer');
   }
 
   const sql = `
     delete from "tasks"
-    where "projectId" = ($1)
-    AND "taskId" = ($2)
+    where "taskId" = ($1)
   `;
 
-  const params = [projectId, taskId];
+  const params = [taskId];
 
   db.query(sql, params)
     .then(result => {
