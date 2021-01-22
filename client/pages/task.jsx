@@ -7,6 +7,21 @@ export default class Task extends React.Component {
     this.state = {
       task: null
     };
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete() {
+
+    const token = window.localStorage.getItem('user-jwt');
+    const req = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
+      }
+    };
+    fetch(`/api/tasks/delete/${this.props.taskId}`, req);
+    window.location.hash = `#project?projectId=${this.props.projectId}`;
   }
 
   componentDidMount() {
@@ -76,9 +91,14 @@ export default class Task extends React.Component {
                   </div>
                 }
 
+                <div>
                   <a href={`#editTask?projectId=${this.props.projectId}&taskId=${this.props.taskId}`}>
                     <button type="submit" className="btn btn-success mt-3 mb-3">Edit</button>
-                 </a>
+                  </a>
+
+                  <button onClick={this.handleDelete} type="submit" className="btn btn-danger mt-3 mb-3 ml-3">Delete</button>
+                </div>
+
               </div>
 
             </div>
@@ -87,78 +107,6 @@ export default class Task extends React.Component {
         </div>
 
       </div>
-
-    // <div className="container mt-3">
-    //   <h2>View Task</h2>
-
-    //   <div className="mt-3">
-    //     <h6>Task Name</h6>
-
-    //     <div className="view-task">
-    //       {this.state.task &&
-    //         <div className="ml-2 mt-1">
-    //           {this.state.task.taskName}
-    //         </div>
-    //       }
-    //     </div>
-
-    //     <h6 className="mt-2">Status Name</h6>
-
-    //     <div className="view-task mt-2">
-    //       {this.state.task &&
-    //         <div className="ml-2 mt-1">
-    //           {this.state.task.statusName}
-    //         </div>
-    //       }
-    //     </div>
-
-    //     <div className="d-flex flex-row mt-2">
-    //       <h6 className="width-50">Date Created</h6>
-    //       <h6 className="width-50 ml-5">Deadline</h6>
-    //     </div>
-
-    //     <div className="d-flex flex-row justify-content-around p-0">
-    //       <div className="view-task width-50 mr-5 p-0">
-    //         {this.state.task &&
-    //           <div className="ml-2 mt-1">
-    //             {this.state.task.dateCreated}
-    //           </div>
-    //         }
-    //       </div>
-    //       <div className="view-task width-50 mr-0 p-0">
-    // {this.state.task &&
-    //   <div className="ml-2 mt-1">
-    //     {this.state.task.deadline}
-    //   </div>
-    // }
-    //       </div>
-    //     </div>
-
-    //     <h6 className="mt-2">Username</h6>
-    //     <div className="view-task mt-2">
-    // {this.state.task &&
-    //   <div className="ml-2 mt-1">
-    //     {this.state.task.username}
-    //   </div>
-    // }
-    //     </div>
-
-    //     <h6 className="mt-2">Description</h6>
-    //     <div className="view-task height-desc mt-2">
-    //       {this.state.task &&
-    //         <div className="ml-2">
-    //           {this.state.task.description}
-    //         </div>
-    //       }
-    //     </div>
-
-    //     <a href={`#editTask?projectId=${this.props.projectId}&taskId=${this.props.taskId}`}>
-    //       <button type="submit" className="btn btn-success mt-3 mb-3">Edit</button>
-    //     </a>
-
-    //   </div>
-
-    // </div>
     );
   }
 }

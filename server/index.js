@@ -278,6 +278,26 @@ app.get('/api/tasks/view/:taskId', (req, res, next) => {
 
 });
 
+app.put('/api/tasks/delete/:taskId', (req, res, next) => {
+  const taskId = Number(req.params.taskId);
+  if (!taskId) {
+    throw new ClientError(400, 'Project Id and Task Id must be a positive integer');
+  }
+
+  const sql = `
+    delete from "tasks"
+    where "taskId" = ($1)
+  `;
+
+  const params = [taskId];
+
+  db.query(sql, params)
+    .then(result => {
+      res.sendStatus(200);
+    })
+    .catch(err => next(err));
+});
+
 app.put('/api/tasks/edit/:taskId', (req, res, next) => {
   const asssignedTo = req.user.userId;
 
