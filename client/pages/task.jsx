@@ -13,8 +13,14 @@ export default class Task extends React.Component {
   handleDelete() {
 
     const token = window.localStorage.getItem('user-jwt');
-    fetch(`/api/tasks/delete/${this.props.taskId}`, { headers: { 'X-Access-Token': token } })
-      .then(res => res.json());
+    const req = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': token
+      }
+    };
+    fetch(`/api/tasks/delete/${this.props.taskId}`, req);
     window.location.hash = `#project?projectId=${this.props.projectId}`;
   }
 
