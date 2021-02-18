@@ -207,3 +207,29 @@ ul {
     width: 100%;
   }
 }
+
+@media screen and (min-width: 1400px) {
+  .sidebar {
+    background-color: rgb(5, 56, 107);
+    z-index: 1;
+    position: absolute;
+    width: 175px;
+    height: 90vh;
+    top: 0;
+    left: -175px;
+    transform: scale(1);
+    transition: all 0.5s ease;
+  }
+
+  .sidebar-nav-on {
+    background-color: rgb(5, 56, 107);
+    z-index: 1;
+    position: absolute;
+    width: 175px;
+    height: 100vh;
+    top: 110px;
+    left: 20px;
+    transition: all 0.5s ease;
+    transform: scale(1.25);
+  }
+}
